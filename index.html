@@ -3,325 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Danilo V. Cardoso — Desenvolvedor de Software Full Stack com foco em JavaScript, TypeScript, React, React Native, Node.js, Java e sistemas modernos." />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="description" data-meta-pt="Portfólio de Danilo V. Cardoso, Software Engineer e Full Stack Developer. Sistemas web, mobile, backend, arquitetura, segurança e automação." data-meta-en="Portfolio of Danilo V. Cardoso, Software Engineer and Full Stack Developer. Web, mobile, backend, architecture, security and automation." content="Portfólio de Danilo V. Cardoso, Software Engineer e Full Stack Developer. Sistemas web, mobile, backend, arquitetura, segurança e automação." />
+  <meta name="theme-color" content="#090908" />
+  <meta name="color-scheme" content="dark" />
 
-  <meta property="og:title" content="Danilo V. Cardoso — Desenvolvedor de Software" />
-  <meta property="og:description" content="Desenvolvimento web, mobile, backend e sistemas com foco em execução e resultado." />
+  <meta property="og:title" data-meta-pt="Danilo V. Cardoso — Software Engineer" data-meta-en="Danilo V. Cardoso — Software Engineer" content="Danilo V. Cardoso — Software Engineer" />
+  <meta property="og:description" data-meta-pt="Engenharia de software do backend à experiência final." data-meta-en="Software engineering from backend architecture to the final experience." content="Engenharia de software do backend à experiência final." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://danilovcardoso.com.br" />
+  <meta property="og:url" content="https://danilovcardoso.com.br/" />
+  <meta property="og:image" content="https://danilovcardoso.com.br/assets/social-card.svg" />
+  <meta property="og:locale" data-meta-pt="pt_BR" data-meta-en="en_US" content="pt_BR" />
+  <meta property="og:site_name" content="Danilo V. Cardoso" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Danilo V. Cardoso — Software Engineer" />
+  <meta name="twitter:description" data-meta-pt="Engenharia de software do backend à experiência final." data-meta-en="Software engineering from backend architecture to the final experience." content="Engenharia de software do backend à experiência final." />
+  <meta name="twitter:image" content="https://danilovcardoso.com.br/assets/social-card.svg" />
 
-  <title>Danilo V. Cardoso — Desenvolvedor de Software</title>
-
+  <title data-title-pt="Danilo V. Cardoso — Software Engineer" data-title-en="Danilo V. Cardoso — Software Engineer">Danilo V. Cardoso — Software Engineer</title>
+  <link rel="canonical" href="https://danilovcardoso.com.br/" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/journey.css" />
 </head>
-<body>
-  <div class="noise" aria-hidden="true"></div>
+<body class="page-home">
+  <a class="skip-link" href="#main-content" data-pt="Pular para o conteúdo" data-en="Skip to content">Pular para o conteúdo</a>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a href="#top" class="brand">DVC<span class="brand-dot">.</span></a>
+  <header class="site-header" data-header>
+    <div class="shell nav-shell">
+      <a href="#top" class="brand" aria-label="Danilo V. Cardoso — início" data-aria-pt="Danilo V. Cardoso — início" data-aria-en="Danilo V. Cardoso — home">
+        <span class="brand-mark" aria-hidden="true">DVC</span>
+        <span class="brand-caption">ENGINEERING WITH INTENT</span>
+      </a>
 
-      <nav class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-nav-toggle>
+        <span class="sr-only" data-pt="Abrir menu" data-en="Open menu">Abrir menu</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-links" id="primary-navigation" aria-label="Navegação principal" data-aria-pt="Navegação principal" data-aria-en="Primary navigation" data-nav>
         <a href="#projects" data-pt="Projetos" data-en="Projects">Projetos</a>
-        <a href="#stack" data-pt="Tecnologias" data-en="Stack">Tecnologias</a>
+        <a href="#stack" data-pt="Tecnologias" data-en="Expertise">Tecnologias</a>
         <a href="#about" data-pt="Sobre" data-en="About">Sobre</a>
         <a href="#contact" data-pt="Contato" data-en="Contact">Contato</a>
       </nav>
 
-      <button id="langToggle" class="lang-toggle" type="button">EN</button>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="status-line reveal">
-            <span class="status-dot"></span>
-            <span data-pt="Disponível para contratos remotos" data-en="Available for remote contracts">
-              Disponível para contratos remotos
-            </span>
+  <div class="journey-stage" data-journey-stage data-motion-sprite="assets/motion/leaf-flight.svg" aria-hidden="true">
+      <div class="hero-scene" aria-hidden="true">
+        <div class="scene-light"></div>
+        <div class="sun-disc"></div>
+        <img class="landscape landscape-far" src="assets/scenes/landscape-far.svg" alt="" fetchpriority="high" />
+        <div class="scene-mist mist-far"></div>
+        <img class="landscape landscape-mid" src="assets/scenes/landscape-mid.svg" alt="" />
+        <div class="scene-mist mist-near"></div>
+        <img class="landscape landscape-near" src="assets/scenes/landscape-near.svg" alt="" />
+        <img class="scene-branches" src="assets/scenes/branches.svg" alt="" />
+      </div>
+      <canvas class="journey-canvas"></canvas>
+      <div class="journey-vignette"></div>
+  </div>
+  <canvas class="journey-foreground" data-journey-foreground aria-hidden="true"></canvas>
+  <div class="opening-dark" aria-hidden="true"></div>
+
+  <main id="main-content" tabindex="-1">
+    <section class="hero" id="top" aria-labelledby="hero-title" data-scene="0" data-chapter="01 / THE FIELD">
+
+      <div class="shell hero-layout">
+        <div class="hero-copy-block">
+          <div class="availability hero-enter">
+            <span class="availability-line" aria-hidden="true"></span>
+            <span data-pt="Disponível para contratos remotos" data-en="Available for remote contracts">Disponível para contratos remotos</span>
           </div>
-
-          <p class="eyebrow reveal">DANILO V. CARDOSO</p>
-
-          <h1 class="hero-title reveal">
-            <span data-pt="Software Engineer · Full Stack Developer" data-en="Software Engineer · Full Stack Developer">Software Engineer · Full Stack Developer</span>
+          <p class="hero-name hero-enter">DANILO V. CARDOSO</p>
+          <h1 class="hero-title hero-enter" id="hero-title">
+            <span class="title-mask"><span>Software</span></span>
+            <span class="title-mask title-indent"><span><em>Engineer.</em></span></span>
           </h1>
-
-          <p class="hero-subtitle reveal">
-            JavaScript · TypeScript · React · React Native · Node.js · Java · C#
-          </p>
-
-          <p class="hero-copy reveal"
-             data-pt="Construo aplicações web, mobile, backends, integrações e sistemas completos. Meu foco é transformar ideias e problemas reais em software funcional, bem estruturado e pronto para uso."
-             data-en="I build web and mobile applications, backends, integrations and complete systems. My focus is turning real ideas and problems into functional, well-structured software ready for use.">
-            Construo aplicações web, mobile, backends, integrações e sistemas completos. Meu foco é transformar ideias e problemas reais em software funcional, bem estruturado e pronto para uso.
-          </p>
-
-          <div class="hero-actions reveal">
-            <a class="btn btn-primary" href="#projects"
-               data-pt="Ver projetos" data-en="View projects">Ver projetos</a>
-            <a class="btn btn-secondary" href="#contact"
-               data-pt="Falar comigo" data-en="Contact me">Falar comigo</a>
-          </div>
-
-          <div class="hero-links reveal">
-            <a href="https://github.com/danilocardoso-dev" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/danilo-cardoso-dev" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <p class="hero-role hero-enter">FULL STACK DEVELOPER <span> / CYBERSECURITY</span></p>
+          <p class="hero-statement hero-enter" data-pt="Projeto e construo sistemas completos — da arquitetura e do backend à experiência final." data-en="I design and build complete systems — from architecture and backend to the final experience.">Projeto e construo sistemas completos — da arquitetura e do backend à experiência final.</p>
+          <div class="hero-actions hero-enter">
+            <a class="text-cta text-cta-primary" href="#projects"><span data-pt="Explorar projetos" data-en="Explore projects">Explorar projetos</span><span aria-hidden="true">↘</span></a>
+            <a class="text-cta" href="#contact"><span data-pt="Entrar em contato" data-en="Get in touch">Entrar em contato</span><span aria-hidden="true">→</span></a>
           </div>
         </div>
-
-        <aside class="terminal-card reveal">
-          <div class="terminal-top">
-            <div class="terminal-dots"><span></span><span></span><span></span></div>
-            <span>danilo@portfolio:~</span>
-          </div>
-
-          <div class="terminal-body">
-            <p><span class="prompt">$</span> perfil</p>
-            <p class="terminal-output">full_stack_developer</p>
-
-            <p><span class="prompt">$</span> stack --principal</p>
-            <p class="terminal-output">
-              javascript<br/>
-              typescript<br/>
-              react<br/>
-              react_native<br/>
-              node.js<br/>
-              java<br/>
-              sql
-            </p>
-
-            <p><span class="prompt">$</span> diferenciais</p>
-            <p class="terminal-output">linux · cybersecurity · python · iot</p>
-
-            <p><span class="prompt">$</span> status</p>
-            <p class="terminal-output success">disponivel_para_contratos=true</p>
-          </div>
-        </aside>
+        <aside class="hero-aside hero-enter" aria-label="Áreas de atuação" data-aria-pt="Áreas de atuação" data-aria-en="Fields of work"><span>EST. / DVC</span><p>SOFTWARE<br />SYSTEMS<br />SECURITY</p></aside>
       </div>
+      <div class="scene-caption" aria-hidden="true"><span>01 — THE FIELD</span><span data-pt="Entre a intenção e o que existe." data-en="Between intention and what exists.">Entre a intenção e o que existe.</span></div>
+      <button class="intro-skip" data-skip-intro type="button" hidden data-pt="Pular abertura" data-en="Skip intro">Pular abertura</button>
+      <a class="scroll-cue" href="#projects"><span data-pt="Descobrir" data-en="Discover">Descobrir</span><i aria-hidden="true"></i></a>
     </section>
 
-    <section class="section divider-section" id="projects">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-index">01</p>
-          <div>
-            <p class="eyebrow" data-pt="PROJETOS EM DESTAQUE" data-en="FEATURED PROJECTS">PROJETOS EM DESTAQUE</p>
-            <h2 data-pt="Software construído do zero, com problemas reais para resolver."
-                data-en="Software built from scratch to solve real problems.">
-              Software construído do zero, com problemas reais para resolver.
-            </h2>
-          </div>
-        </div>
+    <section class="section projects-section" id="projects" aria-labelledby="projects-title" data-chapter="02 / CROSSING">
+      <div class="shell">
+        <header class="crossing-copy">
+          <p class="kicker" data-pt="DO CAMPO AO SISTEMA" data-en="FROM FIELD TO SYSTEM">DO CAMPO AO SISTEMA</p>
+          <h2 id="projects-title"><span data-pt="Tudo se" data-en="Everything">Tudo se</span><em data-pt="conecta." data-en="connects.">conecta.</em></h2>
+          <p class="crossing-note" data-pt="Três projetos. Diferentes escalas de um mesmo pensamento." data-en="Three projects. Different scales of the same way of thinking.">Três projetos. Diferentes escalas de um mesmo pensamento.</p>
+        </header>
 
-        <div class="projects-grid">
-          <article class="project-card featured reveal">
-            <div class="project-meta"><span>01</span><span>PRODUÇÃO · FULL STACK · MOBILE</span></div>
-            <div class="project-body">
-              <div>
-                <h3>MAPCLOUD</h3>
-                <p data-pt="Plataforma empresarial que projetei e desenvolvi sozinho desde o zero. O sistema combina backend multiempresa com bancos MySQL isolados, aplicação React Native offline-first, sincronização, geolocalização, WMS/TMS e arquitetura preparada para diferentes níveis de escala e hardware limitado."
-                   data-en="Enterprise platform I designed and developed independently from scratch. It combines a multi-company backend with isolated MySQL databases, an offline-first React Native application, synchronization, geolocation, WMS/TMS and an architecture designed for different levels of scale and constrained hardware.">
-                   Plataforma empresarial que projetei e desenvolvi sozinho desde o zero. O sistema combina backend multiempresa com bancos MySQL isolados, aplicação React Native offline-first, sincronização, geolocalização, WMS/TMS e arquitetura preparada para diferentes níveis de escala e hardware limitado.
-                </p>
-                <div class="project-points">
-                  <span>100+ empresas</span>
-                  <span>Ambientes com 1.000+ colaboradores</span>
-                  <span>6 serviços/módulos</span>
-                  <span>Operação offline-first</span>
-                  <span>Arquitetura, backend e mobile desenvolvidos por mim</span>
-                </div>
-              </div>
-              <div class="tag-row"><span>React Native</span><span>TypeScript</span><span>Node.js</span><span>MySQL</span><span>SQLite</span><span>REST APIs</span></div>
+        <div class="project-ledger">
+          <article class="project-chapter project-mapcloud" id="mapcloud" data-scene="1" data-chapter="03 / MAPCLOUD" aria-labelledby="mapcloud-title">
+            <div class="project-visual" aria-hidden="true">
+              <img class="world-poster" src="assets/scenes/mapcloud.svg" loading="lazy" alt="" />
+              <div class="visual-caption"><span>01 / TERRITORY</span><span>OFFLINE → ONLINE</span></div>
+              <span class="world-coordinate">FIELD / 001</span>
             </div>
-            <div class="project-footer"><span>Arquitetura · Backend · Mobile · Escalabilidade</span><a href="projects/mapcloud.html">VER CASE →</a></div>
+            <div class="project-content reveal">
+              <div class="project-meta"><span>01</span><span data-pt="PRODUÇÃO · FULL STACK · MOBILE" data-en="PRODUCTION · FULL STACK · MOBILE">PRODUÇÃO · FULL STACK · MOBILE</span></div>
+              <h3 id="mapcloud-title">MapCloud<span class="title-dot">.</span></h3>
+              <p class="project-lead" data-pt="Plataforma empresarial multiempresa, offline-first e preparada para operar do hardware limitado à escala corporativa." data-en="A multi-company, offline-first enterprise platform designed to operate from constrained hardware to corporate scale.">Plataforma empresarial multiempresa, offline-first e preparada para operar do hardware limitado à escala corporativa.</p>
+              <p data-pt="Projetei e desenvolvi a arquitetura, o backend e a aplicação mobile, conectando WMS, TMS, sincronização, geolocalização e bancos isolados por empresa." data-en="I designed and built the architecture, backend and mobile application, connecting WMS, TMS, synchronization, geolocation and isolated databases per company.">Projetei e desenvolvi a arquitetura, o backend e a aplicação mobile, conectando WMS, TMS, sincronização, geolocalização e bancos isolados por empresa.</p>
+              <dl class="project-stats">
+                <div><dt>100+</dt><dd data-pt="empresas" data-en="companies">empresas</dd></div>
+                <div><dt>1.000+</dt><dd data-pt="colaboradores em ambientes atendidos" data-en="people in supported environments">colaboradores em ambientes atendidos</dd></div>
+                <div><dt>06</dt><dd data-pt="serviços e módulos" data-en="services and modules">serviços e módulos</dd></div>
+              </dl>
+              <ul class="tech-line" aria-label="Tecnologias" data-aria-pt="Tecnologias" data-aria-en="Technologies"><li>React Native</li><li>TypeScript</li><li>Node.js</li><li>MySQL</li><li>SQLite</li></ul>
+              <p class="architecture-note" data-pt="Mobile → Sincronização → Serviços → Dados isolados" data-en="Mobile → Synchronization → Services → Isolated data">Mobile → Sincronização → Serviços → Dados isolados</p>
+              <a class="case-link" href="projects/mapcloud.html"><span data-pt="Ler o case" data-en="Read case study">Ler o case</span><span aria-hidden="true">↗</span></a>
+            </div>
           </article>
 
-          <article class="project-card reveal">
-            <div class="project-meta"><span>02</span><span>COMPUTAÇÃO GRÁFICA · DESKTOP · 3D</span></div>
-            <div class="project-body">
-              <div>
-                <h3>ATLAS3D</h3>
-                <p data-pt="Aplicação desktop para visualização, exploração e interação com modelos tridimensionais. Construída em C# e .NET sobre OpenGL, com arquitetura separada entre aplicação, núcleo, renderização e formatos. O projeto está em fase final de desenvolvimento."
-                   data-en="Desktop application for visualization, exploration and interaction with 3D models. Built in C# and .NET on top of OpenGL, with separate application, core, rendering and format layers. The project is in its final development stage.">
-                   Aplicação desktop para visualização, exploração e interação com modelos tridimensionais. Construída em C# e .NET sobre OpenGL, com arquitetura separada entre aplicação, núcleo, renderização e formatos. O projeto está em fase final de desenvolvimento.
-                </p>
-                <div class="project-points">
-                  <span>Renderização 3D e OpenGL</span>
-                  <span>Câmera, cena, meshes e shaders</span>
-                  <span>Picking e interação com objetos</span>
-                  <span>Núcleo extensível para visualização científica</span>
-                </div>
-              </div>
-              <div class="tag-row"><span>C#</span><span>.NET</span><span>Avalonia UI</span><span>OpenTK</span><span>OpenGL</span></div>
+          <article class="project-chapter project-atlas" id="atlas3d" data-scene="2" data-chapter="04 / ATLAS3D" aria-labelledby="atlas-title">
+            <div class="project-visual" aria-hidden="true">
+              <img class="world-poster" src="assets/scenes/atlas3d.svg" loading="lazy" alt="" />
+              <div class="visual-caption"><span>02 / DIMENSION</span><span>X · Y · Z</span></div>
+              <span class="world-coordinate">FORM / 002</span>
             </div>
-            <div class="project-footer"><span>Explore. Interact. Understand.</span><a href="projects/atlas3d.html">VER CASE →</a></div>
+            <div class="project-content reveal">
+              <div class="project-meta"><span>02</span><span data-pt="COMPUTAÇÃO GRÁFICA · DESKTOP · 3D" data-en="COMPUTER GRAPHICS · DESKTOP · 3D">COMPUTAÇÃO GRÁFICA · DESKTOP · 3D</span></div>
+              <h3 id="atlas-title">Atlas3D<span class="title-dot">.</span></h3>
+              <p class="project-lead" data-pt="Um núcleo 3D extensível para explorar, visualizar e compreender modelos técnicos e científicos." data-en="An extensible 3D core for exploring, visualizing and understanding technical and scientific models.">Um núcleo 3D extensível para explorar, visualizar e compreender modelos técnicos e científicos.</p>
+              <p data-pt="A aplicação separa interface, núcleo, renderização e formatos, com câmera, cena, meshes, shaders, picking e interação sobre OpenGL." data-en="The application separates interface, core, rendering and formats, with camera, scene, meshes, shaders, picking and interaction built on OpenGL.">A aplicação separa interface, núcleo, renderização e formatos, com câmera, cena, meshes, shaders, picking e interação sobre OpenGL.</p>
+              <ul class="tech-line" aria-label="Tecnologias" data-aria-pt="Tecnologias" data-aria-en="Technologies"><li>C#</li><li>.NET</li><li>Avalonia UI</li><li>OpenTK</li><li>OpenGL</li></ul>
+              <p class="architecture-note" data-pt="Interface / Núcleo / Renderização / Formatos" data-en="Interface / Core / Rendering / Formats">Interface / Núcleo / Renderização / Formatos</p>
+              <a class="case-link" href="projects/atlas3d.html"><span data-pt="Ler o case" data-en="Read case study">Ler o case</span><span aria-hidden="true">↗</span></a>
+            </div>
           </article>
 
-          <article class="project-card reveal">
-            <div class="project-meta"><span>03</span><span>SISTEMAS · IA · AUTOMAÇÃO</span></div>
-            <div class="project-body">
-              <div>
-                <h3>AZRIEL</h3>
-                <p data-pt="Sistema pessoal modular que evoluiu de um assistente local para uma plataforma central de conhecimento, projetos, estudos, rotinas e automações. Possui histórico persistente, SQLite, integração com LLMs locais via Ollama e evolução planejada para telemetria e IoT com ESP32."
-                   data-en="Modular personal system that evolved from a local assistant into a central platform for knowledge, projects, study, routines and automation. It includes persistent history, SQLite, local LLM integration through Ollama and planned evolution into telemetry and ESP32-based IoT.">
-                   Sistema pessoal modular que evoluiu de um assistente local para uma plataforma central de conhecimento, projetos, estudos, rotinas e automações. Possui histórico persistente, SQLite, integração com LLMs locais via Ollama e evolução planejada para telemetria e IoT com ESP32.
-                </p>
-                <div class="project-points">
-                  <span>Arquitetura modular e provider de IA desacoplado</span>
-                  <span>Histórico multi-turno e persistência em SQLite</span>
-                  <span>LLMs locais via Ollama</span>
-                  <span>Dashboard, rotinas e módulos independentes</span>
-                </div>
-              </div>
-              <div class="tag-row"><span>Python</span><span>SQLite</span><span>Ollama</span><span>Linux</span><span>LLM</span><span>IoT</span></div>
+          <article class="project-chapter project-azriel" id="azriel" data-scene="3" data-chapter="05 / AZRIEL" aria-labelledby="azriel-title">
+            <div class="project-visual" aria-hidden="true">
+              <img class="world-poster" src="assets/scenes/azriel.svg" loading="lazy" alt="" />
+              <div class="visual-caption"><span>03 / INTELLIGENCE</span><span>LOCAL / CONNECTED</span></div>
+              <span class="world-coordinate">SIGNAL / 003</span>
             </div>
-            <div class="project-footer"><span>Arquitetura modular · IA local · automação</span><a href="projects/azriel.html">VER CASE →</a></div>
+            <div class="project-content reveal">
+              <div class="project-meta"><span>03</span><span data-pt="SISTEMAS · IA · AUTOMAÇÃO" data-en="SYSTEMS · AI · AUTOMATION">SISTEMAS · IA · AUTOMAÇÃO</span></div>
+              <h3 id="azriel-title">Azriel<span class="title-dot">.</span></h3>
+              <p class="project-lead" data-pt="Sistema pessoal modular para conhecimento, projetos, rotinas, automação e inteligência local." data-en="A modular personal system for knowledge, projects, routines, automation and local intelligence.">Sistema pessoal modular para conhecimento, projetos, rotinas, automação e inteligência local.</p>
+              <p data-pt="A arquitetura desacopla providers de IA, preserva histórico em SQLite e integra modelos locais via Ollama, com evolução planejada para telemetria e IoT." data-en="Its architecture decouples AI providers, preserves history in SQLite and integrates local models through Ollama, with a planned path toward telemetry and IoT.">A arquitetura desacopla providers de IA, preserva histórico em SQLite e integra modelos locais via Ollama, com evolução planejada para telemetria e IoT.</p>
+              <ul class="tech-line" aria-label="Tecnologias" data-aria-pt="Tecnologias" data-aria-en="Technologies"><li>Python</li><li>SQLite</li><li>Ollama</li><li>Linux</li><li data-pt="IoT (planejado)" data-en="IoT (planned)">IoT (planejado)</li></ul>
+              <p class="architecture-note" data-pt="Memória persistente · Providers independentes · IA local" data-en="Persistent memory · Independent providers · Local AI">Memória persistente · Providers independentes · IA local</p>
+              <a class="case-link" href="projects/azriel.html"><span data-pt="Ler o case" data-en="Read case study">Ler o case</span><span aria-hidden="true">↗</span></a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section divider-section" id="stack">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-index">02</p>
-          <div>
-            <p class="eyebrow" data-pt="TECNOLOGIAS" data-en="TECH STACK">TECNOLOGIAS</p>
-            <h2 data-pt="Minha base principal é desenvolvimento de software."
-                data-en="My core background is software development.">
-              Minha base principal é desenvolvimento de software.
-            </h2>
-          </div>
-        </div>
-
-        <div class="stack-groups">
-          <div class="stack-group reveal">
-            <span class="stack-number">01</span>
-            <div>
-              <h3 data-pt="Front-end" data-en="Front-end">Front-end</h3>
-              <div class="stack-tags">
-                <span>JavaScript</span><span>TypeScript</span><span>React</span><span>HTML</span><span>CSS</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="stack-group reveal">
-            <span class="stack-number">02</span>
-            <div>
-              <h3 data-pt="Mobile" data-en="Mobile">Mobile</h3>
-              <div class="stack-tags">
-                <span>React Native</span><span>JavaScript</span><span>TypeScript</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="stack-group reveal">
-            <span class="stack-number">03</span>
-            <div>
-              <h3 data-pt="Back-end" data-en="Back-end">Back-end</h3>
-              <div class="stack-tags">
-                <span>Node.js</span><span>Java</span><span>Python</span><span>REST APIs</span><span>SQL</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="stack-group reveal">
-            <span class="stack-number">04</span>
-            <div>
-              <h3 data-pt="Infraestrutura e ferramentas" data-en="Infrastructure & tools">Infraestrutura e ferramentas</h3>
-              <div class="stack-tags">
-                <span>Linux</span><span>Git</span><span>GitHub</span><span>Nginx</span><span>Docker</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="stack-group reveal">
-            <span class="stack-number">05</span>
-            <div>
-              <h3 data-pt="Diferenciais técnicos" data-en="Technical differentiators">Diferenciais técnicos</h3>
-              <div class="stack-tags">
-                <span>Cybersecurity</span><span>Automação</span><span>LLMs</span><span>IoT</span><span>ESP32</span>
-              </div>
-            </div>
-          </div>
+    <section class="section expertise-section" id="stack" data-scene="4" aria-labelledby="stack-title">
+      <div class="shell">
+        <header class="section-intro reveal">
+          <p class="section-number">06 / CRAFT</p>
+          <div><p class="kicker" data-pt="CAMADAS DE ATUAÇÃO" data-en="FIELDS OF WORK">CAMADAS DE ATUAÇÃO</p><h2 id="stack-title" data-pt="Amplitude para construir. Profundidade para decidir." data-en="Breadth to build. Depth to decide.">Amplitude para construir. Profundidade para decidir.</h2></div>
+        </header>
+        <div class="expertise-list">
+          <article class="expertise-row reveal"><span class="expertise-index">01</span><h3><span class="expertise-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="7" y="9" width="34" height="25" rx="2"/><path d="M17 41h14M24 34v7M13 16l6 5-6 5M23 26h10"/></svg></span><span data-pt="Interfaces e mobile" data-en="Interfaces and mobile">Interfaces e mobile</span></h3><p>JavaScript · TypeScript · React · React Native · HTML · CSS</p></article>
+          <article class="expertise-row reveal"><span class="expertise-index">02</span><h3><span class="expertise-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="11" rx="15" ry="6"/><path d="M9 11v12c0 3 7 6 15 6s15-3 15-6V11M9 23v12c0 3 7 6 15 6s15-3 15-6V23"/></svg></span><span data-pt="Backend e dados" data-en="Backend and data">Backend e dados</span></h3><p>Node.js · Java · Python · REST APIs · SQL · MySQL · SQLite</p></article>
+          <article class="expertise-row reveal"><span class="expertise-index">03</span><h3><span class="expertise-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 5l16 9v20l-16 9-16-9V14zM8 14l16 9 16-9M24 23v20"/><circle cx="24" cy="23" r="3"/></svg></span><span data-pt="Sistemas e infraestrutura" data-en="Systems and infrastructure">Sistemas e infraestrutura</span></h3><p data-pt="Linux · Docker · Nginx · Git · GitHub · Arquitetura" data-en="Linux · Docker · Nginx · Git · GitHub · Architecture">Linux · Docker · Nginx · Git · GitHub · Arquitetura</p></article>
+          <article class="expertise-row reveal"><span class="expertise-index">04</span><h3><span class="expertise-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 5l15 6v11c0 10-6 17-15 21C15 39 9 32 9 22V11zM24 14v18M15 23h18"/><circle cx="24" cy="23" r="5"/></svg></span><span data-pt="Exploração técnica" data-en="Technical exploration">Exploração técnica</span></h3><p data-pt="Cybersecurity · Automação · LLMs · IoT · ESP32 · OpenGL" data-en="Cybersecurity · Automation · LLMs · IoT · ESP32 · OpenGL">Cybersecurity · Automação · LLMs · IoT · ESP32 · OpenGL</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section divider-section" id="about">
-      <div class="container about-grid">
-        <div class="section-heading reveal">
-          <p class="section-index">03</p>
-          <div>
-            <p class="eyebrow" data-pt="SOBRE" data-en="ABOUT">SOBRE</p>
-            <h2 data-pt="Eu gosto de construir." data-en="I like building things.">
-              Eu gosto de construir.
-            </h2>
-          </div>
-        </div>
-
+    <section class="section about-section" id="about" data-scene="5" aria-labelledby="about-title">
+      <div class="about-landscape" aria-hidden="true"><span></span><i></i></div>
+      <div class="shell about-layout">
+        <div class="about-heading reveal"><p class="section-number">07 / HUMAN SIGNAL</p><p class="kicker" data-pt="SOBRE" data-en="ABOUT">SOBRE</p><h2 id="about-title" data-pt="Construir é entender o todo." data-en="Building means understanding the whole.">Construir é entender o todo.</h2></div>
         <div class="about-copy reveal">
-          <p
-            data-pt="Sou desenvolvedor de software com perfil full stack e forte orientação à execução. Trabalho principalmente com JavaScript e TypeScript, React, React Native, Node.js e Java, além de utilizar Python, SQL e Linux em diferentes contextos."
-            data-en="I am a full-stack software developer with a strong execution-driven profile. I work mainly with JavaScript and TypeScript, React, React Native, Node.js and Java, while also using Python, SQL and Linux in different contexts.">
-            Sou desenvolvedor de software com perfil full stack e forte orientação à execução. Trabalho principalmente com JavaScript e TypeScript, React, React Native, Node.js e Java, além de utilizar Python, SQL e Linux em diferentes contextos.
-          </p>
-
-          <p
-            data-pt="Meu foco principal é programação. Cybersecurity, automação, IA e IoT ampliam minha visão técnica e me ajudam a construir soluções que atravessam diferentes camadas de um sistema."
-            data-en="My main focus is software development. Cybersecurity, automation, AI and IoT expand my technical perspective and help me build solutions across different layers of a system.">
-            Meu foco principal é programação. Cybersecurity, automação, IA e IoT ampliam minha visão técnica e me ajudam a construir soluções que atravessam diferentes camadas de um sistema.
-          </p>
+          <p data-pt="Sou desenvolvedor de software com perfil full stack e orientação à execução. Gosto de atravessar as camadas de um sistema — da decisão arquitetural ao detalhe que chega às mãos de quem usa." data-en="I am a full-stack software developer driven by execution. I like working across the layers of a system — from architectural decisions to the details that reach the people using it.">Sou desenvolvedor de software com perfil full stack e orientação à execução. Gosto de atravessar as camadas de um sistema — da decisão arquitetural ao detalhe que chega às mãos de quem usa.</p>
+          <p data-pt="Segurança, automação, IA e IoT ampliam minha visão técnica. Não como ornamento, mas como ferramentas para projetar soluções mais sólidas, autônomas e conscientes do contexto." data-en="Security, automation, AI and IoT broaden my technical perspective. Not as decoration, but as tools for designing systems that are more robust, autonomous and aware of their context.">Segurança, automação, IA e IoT ampliam minha visão técnica. Não como ornamento, mas como ferramentas para projetar soluções mais sólidas, autônomas e conscientes do contexto.</p>
+          <blockquote data-pt="Precisão no código. Clareza nas decisões. Serenidade para resolver." data-en="Precision in code. Clarity in decisions. Composure when solving.">Precisão no código. Clareza nas decisões. Serenidade para resolver.</blockquote>
         </div>
       </div>
     </section>
 
-    <section class="section divider-section contact-section" id="contact">
-      <div class="container">
-        <div class="contact-box reveal">
-          <p class="eyebrow" data-pt="CONTATO" data-en="CONTACT">CONTATO</p>
-
-          <h2 data-pt="Tem um produto para construir?"
-              data-en="Have a product to build?">
-            Tem um produto para construir?
-          </h2>
-
-          <p
-            data-pt="Estou aberto a contratos remotos, projetos full stack, desenvolvimento mobile, backend, integrações e construção de novos produtos."
-            data-en="I am open to remote contracts, full-stack projects, mobile development, backend, integrations and new product development.">
-            Estou aberto a contratos remotos, projetos full stack, desenvolvimento mobile, backend, integrações e construção de novos produtos.
-          </p>
-
-          <div class="contact-actions">
-            <a href="mailto:contato@danilovcardoso.com.br" class="btn btn-primary">
-              contato@danilovcardoso.com.br
-            </a>
-          </div>
-
-          <div class="contact-links">
-            <a href="https://github.com/danilocardoso-dev" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href="https://www.linkedin.com/in/danilo-cardoso-dev" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          </div>
+    <section class="section contact-section" id="contact" data-scene="6" aria-labelledby="contact-title">
+      <div class="contact-sun" aria-hidden="true"></div>
+      <div class="shell contact-layout">
+        <div class="contact-heading reveal"><p class="section-number">08 / BEGIN AGAIN</p><p class="kicker" data-pt="CONTATO" data-en="CONTACT">CONTATO</p><h2 id="contact-title" data-pt="Vamos construir algo que importe." data-en="Let’s build something that matters.">Vamos construir algo que importe.</h2></div>
+        <div class="contact-panel reveal">
+          <p data-pt="Estou aberto a contratos remotos, produtos full stack, desenvolvimento mobile, backend e integrações." data-en="I am open to remote contracts, full-stack products, mobile development, backend work and integrations.">Estou aberto a contratos remotos, produtos full stack, desenvolvimento mobile, backend e integrações.</p>
+          <a class="email-link" href="mailto:contato@danilovcardoso.com.br">contato@danilovcardoso.com.br <span aria-hidden="true">↗</span></a>
+          <div class="social-links"><a href="https://github.com/danilocardoso-dev" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/danilo-cardoso-dev" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Danilo V. Cardoso</span>
-      <span data-pt="Desenvolvido com foco em desempenho e simplicidade."
-            data-en="Built with performance and simplicity in mind.">
-        Desenvolvido com foco em desempenho e simplicidade.
-      </span>
-    </div>
+    <div class="shell footer-inner"><p>© <span id="year">2026</span> Danilo V. Cardoso</p><p data-pt="Engenharia, intenção e detalhe." data-en="Engineering, intent and detail.">Engenharia, intenção e detalhe.</p><a href="#top"><span data-pt="Voltar ao topo" data-en="Back to top">Voltar ao topo</span> ↑</a></div>
   </footer>
 
+  <script src="js/journey.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

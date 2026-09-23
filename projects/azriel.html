@@ -1,8 +1,113 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="stylesheet" href="../css/styles.css"><title>Azriel — Danilo V. Cardoso</title></head><body><header class="site-header"><div class="container nav"><a href="../index.html" class="brand">DVC<span class="brand-dot">.</span></a><a href="../index.html#projects">← Voltar</a></div></header><main><section class="section"><div class="container"><p class="eyebrow">CASE 03 · SISTEMAS E IA</p><h1 class="hero-title">AZRIEL</h1><p class="hero-copy">Plataforma pessoal modular de conhecimento, IA, projetos, rotinas e automações.</p>
-<div class="about-copy">
-<h2>Evolução</h2><p>O Azriel começou como um assistente local e evoluiu para um sistema central de organização de conhecimento, estudos, projetos, métricas, rotinas e automações.</p>
-<h2>Arquitetura</h2><p>A base foi estruturada com responsabilidades desacopladas, provider de IA separado, histórico multi-turno, configuração externa, logging e persistência em SQLite.</p>
-<h2>IA local</h2><p>A integração com <strong>Ollama</strong> permite utilizar LLMs locais e trocar modelos sem acoplar o restante do sistema a uma implementação específica.</p>
-<h2>Expansão</h2><p>O sistema evoluiu para dashboard, operações diárias, rotinas e roadmap interativo. A próxima família técnica expande o Azriel para telemetria e controle autorizado de dispositivos com ESP32/IoT.</p>
-<div class="tag-row"><span>Python</span><span>SQLite</span><span>Ollama</span><span>Linux</span><span>LLM</span><span>IoT</span></div>
-</div></div></section></main><footer class="site-footer"><div class="container footer-inner"><span>Danilo V. Cardoso</span><a href="https://github.com/danilocardoso-dev">GitHub ↗</a></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" data-meta-pt="Case Azriel — sistema pessoal modular para conhecimento, IA local, projetos, rotinas e automação." data-meta-en="Azriel case study — a modular personal system for knowledge, local AI, projects, routines and automation." content="Case Azriel — sistema pessoal modular para conhecimento, IA local, projetos, rotinas e automação." />
+  <meta name="theme-color" content="#090908" />
+  <meta property="og:title" content="Azriel — Danilo V. Cardoso" />
+  <meta property="og:description" data-meta-pt="Arquitetura modular, persistência e inteligência local com Ollama." data-meta-en="Modular architecture, persistence and local intelligence with Ollama." content="Arquitetura modular, persistência e inteligência local com Ollama." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://danilovcardoso.com.br/projects/azriel.html" />
+  <meta property="og:image" content="https://danilovcardoso.com.br/assets/social-card.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title data-title-pt="Azriel — Danilo V. Cardoso" data-title-en="Azriel — Danilo V. Cardoso">Azriel — Danilo V. Cardoso</title>
+  <link rel="canonical" href="https://danilovcardoso.com.br/projects/azriel.html" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/cases.css" />
+</head>
+<body class="case-page case-azriel">
+  <a class="skip-link" href="#case-content" data-pt="Pular para o conteúdo" data-en="Skip to content">Pular para o conteúdo</a>
+  <header class="site-header" data-header>
+    <nav class="shell nav-shell case-nav" aria-label="Navegação principal" data-aria-pt="Navegação principal" data-aria-en="Main navigation">
+      <a href="../index.html" class="brand" aria-label="Danilo V. Cardoso — início" data-aria-pt="Danilo V. Cardoso — início" data-aria-en="Danilo V. Cardoso — home"><span class="brand-mark" aria-hidden="true">DVC</span><span class="brand-caption">ENGINEERING WITH INTENT</span></a>
+      <a class="back-link" href="../index.html#projects"><span aria-hidden="true">←</span><span data-pt="Voltar aos projetos" data-en="Back to projects">Voltar aos projetos</span></a>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
+    </nav>
+  </header>
+
+  <main id="case-content" tabindex="-1">
+    <section class="case-hero" aria-labelledby="case-title">
+      <div class="case-world" data-world="azriel" aria-hidden="true">
+        <img class="world-poster" src="../assets/scenes/azriel.svg" alt="" fetchpriority="high" />
+        <canvas class="world-canvas"></canvas>
+      </div>
+      <p class="case-coordinate" aria-hidden="true">03 / LOCAL INTELLIGENCE<br />MEMORY → SIGNAL</p>
+      <div class="shell case-hero-layout">
+        <div class="case-hero-copy">
+          <p class="case-eyebrow" data-pt="CASE 03 · SISTEMAS E IA" data-en="CASE 03 · SYSTEMS AND AI">CASE 03 · SISTEMAS E IA</p>
+          <h1 class="case-title" id="case-title">Azriel</h1>
+          <p class="case-subtitle" data-pt="Plataforma pessoal modular de conhecimento, inteligência local, projetos, rotinas e automações." data-en="A modular personal platform for knowledge, local intelligence, projects, routines and automation.">Plataforma pessoal modular de conhecimento, inteligência local, projetos, rotinas e automações.</p>
+          <a class="case-read-link" href="#evolution"><span data-pt="Explorar o case" data-en="Explore the case">Explorar o case</span><span aria-hidden="true">↓</span></a>
+        </div>
+        <dl class="case-facts">
+          <div><dt data-pt="FOCO" data-en="FOCUS">FOCO</dt><dd data-pt="Conhecimento · IA · Automação" data-en="Knowledge · AI · Automation">Conhecimento · IA · Automação</dd></div>
+          <div><dt data-pt="MODELO" data-en="MODEL">MODELO</dt><dd data-pt="Modular · Local-first" data-en="Modular · Local-first">Modular · Local-first</dd></div>
+          <div><dt>STACK</dt><dd>Python · SQLite · Ollama</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section case-body">
+      <div class="shell case-body-inner">
+        <nav class="case-toc" aria-label="Índice do case" data-aria-pt="Índice do case" data-aria-en="Case study index">
+          <p class="case-toc-title"><span class="case-toc-number" aria-hidden="true">03</span><span data-pt="NESTE CASE" data-en="IN THIS CASE">NESTE CASE</span></p>
+          <ol>
+            <li><a href="#evolution" data-pt="01 · Evolução" data-en="01 · Evolution">01 · Evolução</a></li>
+            <li><a href="#architecture" data-pt="02 · Arquitetura" data-en="02 · Architecture">02 · Arquitetura</a></li>
+            <li><a href="#local-ai" data-pt="03 · IA local" data-en="03 · Local AI">03 · IA local</a></li>
+            <li><a href="#expansion" data-pt="04 · Expansão" data-en="04 · Expansion">04 · Expansão</a></li>
+          </ol>
+        </nav>
+
+        <div class="case-story">
+          <article class="case-story-section reveal" id="evolution">
+            <p class="kicker">01</p>
+            <h2 data-pt="Evolução" data-en="Evolution">Evolução</h2>
+            <p data-pt="O Azriel começou como um assistente local e evoluiu para um sistema central de organização de conhecimento, estudos, projetos, métricas, rotinas e automações. A evolução acontece por módulos, preservando o núcleo enquanto novas capacidades são incorporadas." data-en="Azriel began as a local assistant and evolved into a central system for organizing knowledge, studies, projects, metrics, routines and automation. It evolves through modules, preserving the core while new capabilities are added.">O Azriel começou como um assistente local e evoluiu para um sistema central de organização de conhecimento, estudos, projetos, métricas, rotinas e automações. A evolução acontece por módulos, preservando o núcleo enquanto novas capacidades são incorporadas.</p>
+            <blockquote class="case-pullquote" data-pt="Uma memória operacional que cresce sem perder estrutura." data-en="An operational memory that grows without losing structure.">Uma memória operacional que cresce sem perder estrutura.</blockquote>
+          </article>
+
+          <article class="case-story-section reveal" id="architecture">
+            <p class="kicker">02</p>
+            <h2 data-pt="Arquitetura modular" data-en="Modular architecture">Arquitetura modular</h2>
+            <p data-pt="A base foi estruturada com responsabilidades desacopladas, provider de IA separado, histórico multi-turno, configuração externa, logging e persistência em SQLite. Essa separação permite trocar integrações sem reescrever o restante do sistema." data-en="The foundation was structured with decoupled responsibilities, a separate AI provider, multi-turn history, external configuration, logging and SQLite persistence. This separation makes it possible to replace integrations without rewriting the rest of the system.">A base foi estruturada com responsabilidades desacopladas, provider de IA separado, histórico multi-turno, configuração externa, logging e persistência em SQLite. Essa separação permite trocar integrações sem reescrever o restante do sistema.</p>
+            <figure class="architecture-figure signal-figure">
+              <figcaption><span class="diagram-index" aria-hidden="true">FIG. 03</span><span data-pt="Inteligência como capacidade do sistema" data-en="Intelligence as a system capability">Inteligência como capacidade do sistema</span></figcaption>
+              <dl class="signal-components">
+                <div><dt data-pt="Memória" data-en="Memory">Memória</dt><dd data-pt="SQLite · Histórico persistente" data-en="SQLite · Persistent history">SQLite · Histórico persistente</dd></div>
+                <div class="signal-component-core"><dt data-pt="Núcleo modular" data-en="Modular core">Núcleo modular</dt><dd data-pt="Responsabilidades desacopladas" data-en="Decoupled responsibilities">Responsabilidades desacopladas</dd></div>
+                <div><dt data-pt="Inteligência local" data-en="Local intelligence">Inteligência local</dt><dd data-pt="Provider separado · Ollama" data-en="Separate provider · Ollama">Provider separado · Ollama</dd></div>
+              </dl>
+              <p class="signal-footnote" data-pt="Contexto multi-turno · Configuração externa · Logging" data-en="Multi-turn context · External configuration · Logging">Contexto multi-turno · Configuração externa · Logging</p>
+            </figure>
+          </article>
+
+          <article class="case-story-section reveal" id="local-ai">
+            <p class="kicker">03</p>
+            <h2 data-pt="IA local" data-en="Local AI">IA local</h2>
+            <div class="case-detail-world signal-detail" data-world="azriel" aria-hidden="true"><img class="world-poster" src="../assets/scenes/azriel.svg" alt="" loading="lazy" /><canvas class="world-canvas"></canvas><span>MEMORY / CONTEXT / SIGNAL</span></div>
+            <p data-pt="A integração com Ollama permite utilizar LLMs locais e trocar modelos sem acoplar o restante da plataforma a uma implementação específica. Histórico persistente e contexto multi-turno tornam a inteligência uma capacidade do sistema, não uma interface isolada." data-en="The Ollama integration enables local LLMs and model switching without coupling the rest of the platform to a specific implementation. Persistent history and multi-turn context make intelligence a system capability rather than an isolated interface.">A integração com <strong>Ollama</strong> permite utilizar LLMs locais e trocar modelos sem acoplar o restante da plataforma a uma implementação específica. Histórico persistente e contexto multi-turno tornam a inteligência uma capacidade do sistema, não uma interface isolada.</p>
+          </article>
+
+          <article class="case-story-section reveal" id="expansion">
+            <p class="kicker">04</p>
+            <h2 data-pt="Expansão" data-en="Expansion">Expansão</h2>
+            <p data-pt="O sistema evoluiu para dashboard, operações diárias, rotinas e roadmap interativo. A próxima família técnica expande o Azriel para telemetria e controle autorizado de dispositivos com ESP32 e IoT." data-en="The system evolved to include a dashboard, daily operations, routines and an interactive roadmap. Its next technical family expands Azriel toward telemetry and authorized device control with ESP32 and IoT.">O sistema evoluiu para dashboard, operações diárias, rotinas e roadmap interativo. A próxima família técnica expande o Azriel para telemetria e controle autorizado de dispositivos com ESP32 e IoT.</p>
+            <ul class="case-stack" aria-label="Tecnologias" data-aria-pt="Tecnologias" data-aria-en="Technologies"><li>Python</li><li>SQLite</li><li>Ollama</li><li>Linux</li><li>LLM</li><li data-pt="IoT (planejado)" data-en="IoT (planned)">IoT (planejado)</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-next case-next-mapcloud">
+      <img class="case-next-world" src="../assets/scenes/mapcloud.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <a class="shell case-next-link" href="mapcloud.html"><span class="case-next-caption" data-pt="01 / DE VOLTA À OPERAÇÃO" data-en="01 / BACK TO OPERATIONS">01 / DE VOLTA À OPERAÇÃO</span><strong>MapCloud <span aria-hidden="true">↗</span></strong><span class="case-next-description" data-pt="Sistemas que conectam o campo." data-en="Systems connecting the field.">Sistemas que conectam o campo.</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><p>© <span id="year">2026</span> Danilo V. Cardoso</p><p data-pt="Engenharia, intenção e detalhe." data-en="Engineering, intent and detail.">Engenharia, intenção e detalhe.</p><a href="#case-content"><span data-pt="Voltar ao topo" data-en="Back to top">Voltar ao topo</span> ↑</a></div></footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

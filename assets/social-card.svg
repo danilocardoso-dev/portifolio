@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Danilo V. Cardoso — Software Engineer</title>
+  <desc id="desc">Cinematic charcoal, paper and red portfolio cover.</desc>
+  <defs>
+    <radialGradient id="sun" cx="50%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#c43b3f"/>
+      <stop offset="1" stop-color="#851e23"/>
+    </radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#090908" stop-opacity="0"/>
+      <stop offset="1" stop-color="#090908"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#090908"/>
+  <circle cx="930" cy="205" r="142" fill="url(#sun)"/>
+  <path d="M0 465L135 360 270 420 430 285 585 405 760 330 920 435 1075 305 1200 400V630H0Z" fill="#292824" opacity=".68"/>
+  <path d="M0 525L180 420 365 520 525 415 700 520 865 405 1030 500 1200 435V630H0Z" fill="#171715"/>
+  <rect y="380" width="1200" height="250" fill="url(#fade)"/>
+  <path d="M72 70h52M72 70v52" stroke="#a9272c" stroke-width="3"/>
+  <text x="74" y="172" fill="#c43b3f" font-family="Consolas, monospace" font-size="18" letter-spacing="5">DANILO V. CARDOSO</text>
+  <text x="70" y="298" fill="#faf6ed" font-family="Georgia, 'Times New Roman', serif" font-size="92" letter-spacing="-5">Software Engineer</text>
+  <text x="190" y="390" fill="#eee8dc" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-style="italic" letter-spacing="-2">Full Stack Developer</text>
+  <text x="76" y="558" fill="#aaa59b" font-family="Arial, sans-serif" font-size="22">Engenharia de software do backend à experiência final.</text>
+</svg>
