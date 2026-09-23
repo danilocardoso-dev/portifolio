@@ -18,6 +18,9 @@ Portfólio estático de Danilo V. Cardoso: Software Engineering, Full Stack Deve
 - `scripts/generate-motion-v2.js`: regeneração determinística do sprite de voo/dobra da folha.
 - `scripts/verify-static.js`: verifica páginas, links, assets, idioma e metadata.
 - `scripts/verify-motion.js`: verifica o ciclo de vida do scheduler em um ambiente simulado.
+- `scripts/verify-seo.js`: metadata, schemas, sitemap/robots e verificação HTTP opcional.
+- `404.html`, `robots.txt`, `sitemap.xml`: erro real e descoberta das quatro URLs públicas.
+- `SEO_SETUP.md`: auditoria, publicação nginx/Coolify e passos manuais do Search Console.
 - `scripts/serve.js`: servidor local sem dependências.
 
 ## Executar localmente
@@ -28,7 +31,7 @@ Sirva a raiz com o servidor local incluído:
 node scripts/serve.js
 ```
 
-Abra `http://127.0.0.1:4173/`. A porta pode ser informada como argumento (`node scripts/serve.js 8080`). Também é possível abrir `index.html` diretamente; o servidor reproduz melhor a publicação.
+Abra `http://127.0.0.1:4173/`. A porta pode ser informada como argumento (`node scripts/serve.js 8080`). Use HTTP local para testar navegação canônica, assets da 404 e status de publicação; abrir HTML diretamente pelo sistema de arquivos não reproduz esses comportamentos.
 
 Para regenerar os assets e conferir a integridade:
 
@@ -37,6 +40,7 @@ node scripts/generate-scenes.js
 node scripts/generate-motion-v2.js
 node scripts/verify-static.js
 node scripts/verify-motion.js
+node scripts/verify-seo.js --self-test
 node --check js/main.js
 node --check js/journey.js
 node --check js/bridge.js
@@ -95,4 +99,6 @@ Para repetir: execute o servidor e os dois verificadores; percorra home → MapC
 
 O projeto não possui etapa de build. `index.html` deve continuar acessível na raiz publicada pelo fluxo GitHub → Coolify → Docker/nginx → VPS.
 
-Sirva HTML, CSS, JS e SVG com os MIME types usuais. Não existe roteador client-side, API ou build. O script `serve.js` é somente para desenvolvimento local; a publicação continua pelo nginx existente.
+Sirva HTML, CSS, JS, SVG, PNG, XML e TXT com os MIME types usuais. Não existe roteador client-side, API ou build. O script `serve.js` é somente para desenvolvimento local; a publicação continua pelo nginx existente.
+
+Consulte [SEO_SETUP.md](SEO_SETUP.md) antes de publicar: configurar a 404 com status HTTP correto, redirects canônicos, MIME, arquivos públicos e Search Console. A presença dos arquivos no checkout não altera automaticamente o proxy/nginx nem registra o domínio no Google.

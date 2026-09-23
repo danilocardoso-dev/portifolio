@@ -94,6 +94,19 @@
     });
     const title = document.querySelector("title[data-title-pt][data-title-en]");
     if (title) document.title = title.dataset[language === "pt" ? "titlePt" : "titleEn"];
+    const structuredData = document.querySelector('script[type="application/ld+json"]');
+    if (structuredData) {
+      try {
+        const data = JSON.parse(structuredData.textContent);
+        const page = (data["@graph"] || [data]).find((node) => node["@type"] === "WebPage");
+        if (page) {
+          page.inLanguage = root.lang;
+          page.name = document.title;
+          page.description = document.querySelector('meta[name="description"]')?.getAttribute("content") || page.description;
+          structuredData.textContent = JSON.stringify(data);
+        }
+      } catch { /* Static SEO verification reports malformed JSON-LD. */ }
+    }
     if (languageToggle) {
       languageToggle.textContent = language === "pt" ? "EN" : "PT";
       languageToggle.setAttribute("aria-label", language === "pt" ? "Mudar idioma para inglês" : "Switch language to Portuguese");

@@ -11,7 +11,7 @@ const { spawnSync } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
 const origin = 'https://danilovcardoso.com.br';
-const pages = ['index.html', 'projects/mapcloud.html', 'projects/atlas3d.html', 'projects/azriel.html'];
+const pages = ['index.html', 'projects/mapcloud.html', 'projects/atlas3d.html', 'projects/azriel.html', '404.html'];
 const errors = [];
 const counts = { pages: 0, references: 0, fragments: 0, translations: 0, css: 0, javascript: 0 };
 const documents = new Map();
@@ -32,9 +32,8 @@ function readDocument(file) {
   const source = fs.readFileSync(path.join(root, file), 'utf8');
   const tags = [];
   const ids = new Set();
-  // Respect quoted greater-than signs and ignore comments. The repository uses
-  // external scripts, so no script source must be interpreted as HTML here.
-  const clean = source.replace(/<!--[\s\S]*?-->/g, '');
+  // Raw-text script bodies (including JSON-LD) are not HTML tags.
+  const clean = source.replace(/<!--[\s\S]*?-->/g, '').replace(/(<script\b[^>]*>)[\s\S]*?<\/script\s*>/gi, '$1</script>');
   for (const match of clean.matchAll(/<([a-z][\w:-]*)\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi)) {
     const attrs = {};
     for (const attr of match[2].matchAll(/([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)) {
@@ -124,9 +123,9 @@ for (const file of pages) {
   if (!doc.tags.some(tag => tag.name === 'a' && /(?:^|\s)skip-link(?:\s|$)/.test(tag.attrs.class || '') && tag.attrs.href?.startsWith('#'))) fail(file, 'missing skip link');
   const canonical = `${origin}/${file === 'index.html' ? '' : file}`;
   const canonicals = doc.tags.filter(tag => tag.name === 'link' && tag.attrs.rel === 'canonical');
-  if (canonicals.length !== 1 || canonicals[0].attrs.href !== canonical) fail(file, `canonical must be ${canonical}`);
+  if (file !== '404.html' && (canonicals.length !== 1 || canonicals[0].attrs.href !== canonical)) fail(file, `canonical must be ${canonical}`);
   const ogUrl = doc.tags.find(tag => tag.name === 'meta' && tag.attrs.property === 'og:url');
-  if (ogUrl?.attrs.content !== canonical) fail(file, 'og:url must match canonical');
+  if (file !== '404.html' && ogUrl?.attrs.content !== canonical) fail(file, 'og:url must match canonical');
 
   for (const { name, attrs } of doc.tags) {
     for (const attribute of Object.keys(attrs)) {
