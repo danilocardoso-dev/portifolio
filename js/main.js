@@ -177,7 +177,11 @@
   if (journeyScene) journeyScene.director = window.PortfolioJourney.create(journeyScene, { foreground: document.querySelector("[data-journey-foreground]"), wake: requestTick });
   const storyAnchors = [...document.querySelectorAll("[data-scene]")].map(element => ({ element, value:Number(element.dataset.scene), top:0, height:0 }));
   if (hero && !journeyScene) makeScene(hero, "wind", hero.querySelector("[data-wind-canvas]"));
-  document.querySelectorAll("[data-world]").forEach((element) => makeScene(element, element.dataset.world, element.querySelector("canvas.world-canvas")));
+  document.querySelectorAll("[data-world]").forEach((element) => {
+    if(element.dataset.world === "bridge" && !window.PortfolioBridge) return;
+    const scene = makeScene(element, element.dataset.world, element.querySelector("canvas.world-canvas"));
+    if(scene?.type === "bridge") scene.director = window.PortfolioBridge.create(scene);
+  });
 
   const createWind = (scene) => {
     const random = seeded(17827);
@@ -412,7 +416,7 @@
   const renderScene = (scene, delta) => {
     if (!scene.width || !scene.height) return;
     scene.phase += delta;
-    if (scene.type === "journey") scene.director.render(delta, wind, pointer, adaptive, introActive);
+    if (scene.director) scene.director.render(delta, wind, pointer, adaptive, introActive);
     else if (scene.type === "wind") drawWind(scene, delta);
     else {
       const ctx = scene.context;
@@ -466,8 +470,9 @@
     if (hero && motionAllowed()) hero.style.setProperty("--depth", `${Math.round(Math.min(scrollY, viewportHeight) * .085)}px`);
     scenes.forEach((scene) => {
       scene.visible = scene.type === "journey" || (scene.top < scrollY + viewportHeight && scene.top + scene.height > scrollY);
-      if (scene.director) scene.director.scroll(scrollY, storyAnchors, reduced.matches, userPaused);
+      if (scene.director) scene.director.scroll(scrollY, storyAnchors, reduced.matches, userPaused, viewportHeight);
       else if (motionAllowed()) scene.approach = clamp((scrollY - scene.top) / viewportHeight);
+      if(scene.top < scrollY+viewportHeight*1.3 && scene.top+scene.height > scrollY) scene.director?.prepare?.();
     });
     let activeChapter = null;
     chapters.forEach((chapter) => {

@@ -9,6 +9,19 @@
   const mix = (a,b,t) => a+(b-a)*t;
   const smooth = (t) => { const n=clamp(t); return n*n*(3-2*n); };
   const range = (n,a,b) => smooth((n-a)/(b-a));
+  // Independent exits: distant light goes first, near silhouettes linger into
+  // the map. The common plane only releases after these exposures have fallen.
+  const openingLayers = (p,light,returning) => ({
+    plane:Math.max(1-range(light,1.08,1.78),returning),
+    exposure:range(light,.16,1.5)*.86*(1-returning),
+    light:Math.max(1-range(light,.08,1.02),returning),
+    sun:Math.max(1-range(light,.38,1.49),returning),
+    far:Math.max(1-range(p,.24,1.3),returning),
+    mid:Math.max(1-range(p,.48,1.55),returning),
+    near:Math.max(1-range(p,.78,1.76),returning),
+    branches:Math.max(1-range(p,.72,1.72),returning),
+    mist:Math.max(1-range(light,.85,1.8),returning)
+  });
   // Exact critically damped response: constant targets agree at 30/60/120 Hz.
   // Velocity survives a reversal; there is no queue of scene animations.
   const follow = (channel,target,rate,dt,snap=false) => {
@@ -76,7 +89,12 @@
       const nextR=Math.min(r+3,rows-1),nextC=Math.min(c+3,cols-1);
       faces.push({ids:[r*cols+c,r*cols+nextC,nextR*cols+nextC,nextR*cols+c]});
     }
-    return {nodes,edges,routes,reeds,leaves,rows,cols,faces};
+    const routePoints=routes.map(ids=>ids.map(id=>nodes[id].projected));
+    const triangles=[];
+    for(let r=1;r<rows-1;r+=3)for(let c=1;c<cols-2;c+=3){
+      const id=r*cols+c;triangles.push([nodes[id].projected,nodes[id+2].projected,nodes[id+cols*2].projected]);
+    }
+    return {nodes,edges,routes,routePoints,triangles,reeds,leaves,rows,cols,faces};
   };
   const resolve = (scroll, anchors, height) => {
     if(!anchors.length) return 0;
@@ -133,12 +151,12 @@
       render(delta,wind,pointer,quality=1,opening=false) {
         if(!model)return;
         const dt=staticMode||paused?0:clamp(delta,0,.05), snap=snapNext||staticMode;
-        loadSprite();phase+=dt;if(opening)intro+=dt;else intro=4;
+        loadSprite();phase+=dt*(1-range(pose,5.12,6)*.82);if(opening)intro+=dt;else intro=4;
         pose=follow(world,targetPose,mobile?22:16,dt,snap);
         const cameraPose=follow(camera,targetPose,mobile?20:13,dt,snap);
         const lightPose=follow(environment,targetPose,mobile?17:10,dt,snap);
         const t=phase,p=pose,geom=range(p,.86,2.08),signal=range(p,1.94,3.08),dissolve=range(p,3.18,3.94),returning=range(lightPose,5.12,6);
-        const nature=(1-range(p,.05,1.08))+returning*.5;
+        const nature=(1-range(p,.24,1.62))+returning*.22;
         const system=range(p,.22,.88)*(1-dissolve);
         const cameraX=follow(pointerX,staticMode?0:clamp(pointer.smoothX,-15,15)*.42,8,dt,snap);
         const cameraY=follow(pointerY,staticMode?0:clamp(pointer.smoothY,-10,10)*.38,8,dt,snap);
@@ -162,19 +180,22 @@
           out[0]=centerX+rx*f+cameraX*(1-depth/450);out[1]=centerY+ry*f+cameraY;out[2]=depth;return out;
         };
         ctx.clearRect(0,0,width,height);if(front)front.clearRect(0,0,width,height);
-        const terrainOpacity=clamp(nature*(1-range(p,.52,1)) + returning*.55);
+        const layers=openingLayers(p,lightPose,returning);
+        const terrainOpacity=layers.plane;
         const terrainScale=1+range(p,0,1)*.48+returning*.05;
         const cssWind=nature>.001?windForce:0,cssGust=nature>.001?gust:0;
-        const styles=[terrainOpacity.toFixed(3),terrainScale.toFixed(3),(-range(p,0,1)*height*.16).toFixed(1),cameraX.toFixed(2),cameraY.toFixed(2),cssGust.toFixed(2),cssWind.toFixed(3),p.toFixed(3)].join("/");
+        const styles=[terrainOpacity.toFixed(3),terrainScale.toFixed(3),(-range(p,0,1)*height*.16).toFixed(1),cameraX.toFixed(2),cameraY.toFixed(2),cssGust.toFixed(2),cssWind.toFixed(3),p.toFixed(3),lightPose.toFixed(3)].join("/");
         if(styles!==lastStyle){
           stage.style.setProperty("--terrain-opacity",terrainOpacity.toFixed(3));
+          for(const name of ["exposure","light","sun","far","mid","near","branches","mist"])
+            stage.style.setProperty(`--exit-${name}`,layers[name].toFixed(3));
           stage.style.setProperty("--terrain-scale",terrainScale.toFixed(3));
           stage.style.setProperty("--terrain-y",`${-range(p,0,1)*height*.16}px`);
           stage.style.setProperty("--camera-x",`${cameraX}px`);stage.style.setProperty("--camera-y",`${cameraY}px`);
           stage.style.setProperty("--gust-x",`${cssGust*12}px`);stage.style.setProperty("--wind",String(cssWind));
           stage.style.setProperty("--crossing",String(Math.sin(clamp(p)*Math.PI)));lastStyle=styles;
           stage.style.setProperty("--shade-left",String(clamp((1-system)+system*travel*(1-signalTravel))));
-          stage.style.setProperty("--shade-right",String(clamp(system*(1-travel+signalTravel))));
+          stage.style.setProperty("--shade-right",String(clamp(system*(1-travel+signalTravel)+returning*.78)));
         }
         // Static atmospheric light is a CSS plane; do not rerasterize a
         // viewport-sized radial gradient for every frame of the mesh.
@@ -201,10 +222,12 @@
           }
           // Map contours are strips of the SAME mesh that later closes in 3D.
           strokeGroups.forEach(group=>{group.points.length=0;});
+          const edgeRetention=1-range(p,2.12,2.93),broken=signal*.34;
+          const accent=range(p,1.3,1.95)*(1-range(p,2.3,2.94)),accentColumn=Math.floor(model.cols*.62);
           model.edges.forEach(([a,b,seam],i)=>{
             if(quality<1&&i%3===0)return;
             const node=model.nodes[a];
-            const retention=node.active||i%11===0?1:1-range(p,2.12,2.93);
+            const retention=node.active||i%11===0?1:edgeRetention;
             if(retention<.001)return;
             const pa=model.nodes[a].projected,pb=model.nodes[b].projected;
             const far=clamp((350-(pa[2]+pb[2])*.5)/700);
@@ -213,14 +236,12 @@
             const alpha=system*((horizontal?.2:.025)*density+(geom*(1-signal))*.22);
             const occlusion=mix(1,.13+Math.pow(far,2)*1.3,skin);
             const visible=alpha*occlusion*mix(1,.55+Math.sin(t*.24+node.phase)*.18,signal)*retention;
-            const broken=signal*.34;
             const endX=mix(pa[0],pb[0],1-broken),endY=mix(pa[1],pb[1],1-broken);
-            const warm=seam&&node.col===Math.floor(model.cols*.62);
-            const accent=range(p,1.3,1.95)*(1-range(p,2.3,2.94));
-            const alphaBucket=Math.round((visible*(.4+far)+(warm?accent*.13*system:0))*48)/48;
+            const warm=seam&&node.col===accentColumn;
+            const alphaIndex=Math.round((visible*(.4+far)+(warm?accent*.13*system:0))*48),alphaBucket=alphaIndex/48;
             if(alphaBucket<=0)return;
             const weight=far>.62?1:0;
-            const key=`${warm}/${weight}/${alphaBucket}`;
+            const key=alphaIndex*4+(warm?2:0)+weight;
             if(!strokeGroups.has(key))strokeGroups.set(key,{points:[],color:warm?`rgba(173,111,86,${alphaBucket})`:`rgba(210,216,195,${alphaBucket})`,width:weight?.95:.55});
             strokeGroups.get(key).points.push(pa[0],pa[1],endX,endY);
           });
@@ -233,14 +254,13 @@
           // Terrain shading, only a few transparent faces — not a flat grid.
           if(geom<.95&&signal<.1){
             ctx.beginPath();
-            for(let r=1;r<model.rows-1;r+=3) for(let c=1;c<model.cols-2;c+=3){
-              const id=r*model.cols+c,pts=[model.nodes[id].projected,model.nodes[id+2].projected,model.nodes[id+model.cols*2].projected];
+            for(const pts of model.triangles){
               ctx.moveTo(pts[0][0],pts[0][1]);ctx.lineTo(pts[1][0],pts[1][1]);ctx.lineTo(pts[2][0],pts[2][1]);ctx.closePath();
             }
             ctx.fillStyle=`rgba(175,188,154,${system*(1-geom)*.026})`;ctx.fill();
           }
           model.routes.forEach((ids,routeIndex)=>{
-            const points=ids.map(id=>model.nodes[id].projected), alpha=system*(routeIndex===0?1:.37)*(1-range(p,2.38,3.5)*.65);
+            const points=model.routePoints[routeIndex], alpha=system*(routeIndex===0?1:.37)*(1-range(p,2.38,3.5)*.65);
             stroke(ctx,points,routeIndex===0?`rgba(173,97,71,${alpha*.54})`:`rgba(213,215,189,${alpha*.28})`,routeIndex===0?1.65:.7);
             // A travelling drawn segment and node responses share a signal phase.
             const cycle=(t*(routeIndex===0?.048:.029)+routeIndex*.31)%1;
@@ -248,7 +268,9 @@
             const a=points[from],b=points[Math.min(from+1,points.length-1)];
             const px=mix(a[0],b[0],fraction),py=mix(a[1],b[1],fraction);
             const pulseEnvelope=Math.sin(cycle*Math.PI)**2;
-            stroke(ctx,[...points.slice(Math.max(0,from-3),from+1),[px,py]],`rgba(222,197,157,${alpha*pulseEnvelope*.8})`,1.8);
+            ctx.beginPath();
+            for(let i=Math.max(0,from-3);i<=from;i++){const point=points[i];i===Math.max(0,from-3)?ctx.moveTo(point[0],point[1]):ctx.lineTo(point[0],point[1]);}
+            ctx.lineTo(px,py);ctx.strokeStyle=`rgba(222,197,157,${alpha*pulseEnvelope*.8})`;ctx.lineWidth=1.8;ctx.stroke();
             glow(ctx,px,py,mobile?17:30,`rgba(193,108,70,${alpha*pulseEnvelope*.2})`);dot(ctx,px,py,2.8,`rgba(234,217,177,${alpha*pulseEnvelope})`);
             points.forEach((point,i)=>{
               if(i%5!==0)return;
@@ -317,7 +339,7 @@
         });
         // One physical near-camera leaf at a time, not a shower of confetti.
         const passage=opening?clamp((intro-.85)/1.35):((t+2.1)%23)/4;
-        const leafPresence=(1-range(p,.65,1.12))+returning*.45;
+        const leafPresence=(1-range(p,.72,1.55))+returning*.12;
         if(front&&sprite.complete&&sprite.naturalWidth&&passage>0&&passage<1&&leafPresence>.001){
           const s=mobile?100:190, x=mix(-s,width+s,passage), y=height*(.66-Math.sin(passage*Math.PI)*.39);
           const index=Math.floor((t*10*(.6+windForce*.4))%16);
@@ -357,5 +379,5 @@
     };
     return state;
   };
-  window.PortfolioJourney=Object.freeze({create,resolve});
+  window.PortfolioJourney=Object.freeze({create,resolve,openingLayers});
 })();

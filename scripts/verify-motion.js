@@ -8,7 +8,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const source = fs.readFileSync(path.join(__dirname, "../js/main.js"), "utf8");
 
-function environment({ reduce = false, canvas = true, journey = false, width = 1100 } = {}) {
+function environment({ reduce = false, canvas = true, journey = false, bridge = false, width = 1100 } = {}) {
   const callbacks = new Map();
   const timers = new Map();
   let nextId = 0;
@@ -41,7 +41,7 @@ function environment({ reduce = false, canvas = true, journey = false, width = 1
       setAttribute(name, value) { attributes.set(name, String(value)); },
       getAttribute(name) { return attributes.get(name) || null; },
       removeAttribute(name) { attributes.delete(name); },
-      getBoundingClientRect() { return { top: this.top - scroll, height: this.height, width: 1100, left: 0 }; },
+      getBoundingClientRect() { return { top: this.top - scroll, height: this.height, width:window.innerWidth, left: 0 }; },
       querySelector(selector) { return selector === ".motion-control-label" ? (this.label ||= element()) : null; },
       closest() { return null; },
       contains(candidate) { return this.children.includes(candidate); },
@@ -67,8 +67,8 @@ function environment({ reduce = false, canvas = true, journey = false, width = 1
     anchor.dataset.scene=String(index);
     return anchor;
   });
-  const worlds = ["mapcloud", "atlas3d", "azriel"].map((type, index) => {
-    const world = element(1200 + index * 1200);
+  const worlds = (bridge ? ["bridge"] : ["mapcloud", "atlas3d", "azriel"]).map((type, index) => {
+    const world = element(bridge ? 5000 : 1200 + index * 1200,bridge ? 1000 : 650);
     world.dataset.world = type;
     sceneElements.push(world);
     return world;
@@ -122,6 +122,11 @@ function environment({ reduce = false, canvas = true, journey = false, width = 1
     vm.runInNewContext(fs.readFileSync(path.join(__dirname,"../js/journey.js"),"utf8"),sandbox);
     const factory=window.PortfolioJourney;
     window.PortfolioJourney={...factory,create(...args){director=factory.create(...args);return director;}};
+  }
+  if(bridge){
+    vm.runInNewContext(fs.readFileSync(path.join(__dirname,"../js/bridge.js"),"utf8"),sandbox);
+    const factory=window.PortfolioBridge;
+    window.PortfolioBridge={...factory,create(...args){director=factory.create(...args);return director;}};
   }
   vm.runInNewContext(source, sandbox);
   return {
@@ -328,3 +333,60 @@ const desktopResponse=environment({journey:true});desktopResponse.frame();deskto
 for(let i=0;i<10;i++){mobileResponse.frame();desktopResponse.frame();}
 assert.ok(mobileResponse.director().inspect().pose>desktopResponse.director().inspect().pose,"Touch layout uses shorter inertia");
 console.log("V2.1 checks passed: independent world/camera/light damping, 30/60/120 Hz equivalence, monotone jump, mid-morph reversal, no backlog, finite settle/sleep, clamped resume and mobile response.");
+
+const bridgePage=environment({bridge:true});bridgePage.frame();
+assert.equal(bridgePage.director().inspect().points,0,"Ending geometry is not allocated on first paint");
+bridgePage.scrollTo(4150);bridgePage.frame();
+assert.ok(bridgePage.director().inspect().points>0,"A nearby offscreen bridge prepares its reusable geometry");
+assert.equal(bridgePage.worlds[0].context.draws,0,"Warm-up does not animate an invisible canvas");
+assert.equal(bridgePage.pending(),0);
+bridgePage.scrollTo(4480);bridgePage.frame();
+assert.ok(bridgePage.director().inspect().points>0,"Bridge draws before the nominal next-case boundary (5300)");
+assert.ok(bridgePage.director().inspect().target>0,"Next scene has a real preroll");
+bridgePage.scrollTo(4850);bridgePage.frame();
+let bridgeState=bridgePage.director().inspect();
+assert.ok(bridgeState.visual<bridgeState.target,"Bridge damps visuals without delaying HTML scroll");
+bridgePage.control.emit("click");bridgePage.frame();
+assert.equal(bridgePage.director().inspect().visual,bridgeState.visual,"Pause holds a mid-morph frame");
+assert.equal(bridgePage.pending(),0);
+bridgePage.scrollTo(4800);bridgePage.frame();
+bridgeState=bridgePage.director().inspect();
+assert.equal(bridgeState.visual,bridgeState.target,"Paused scroll immediately recomposes once");
+const bridgeDraws=bridgePage.worlds[0].context.draws;
+bridgePage.frame();assert.equal(bridgePage.worlds[0].context.draws,bridgeDraws);
+bridgePage.scrollTo(5150);bridgePage.frame();bridgePage.scrollTo(4800);bridgePage.frame();
+assert.deepEqual(bridgePage.director().inspect().projected,bridgeState.projected,"Surviving line IDs return exactly on frozen reverse");
+bridgePage.control.emit("click");bridgePage.frame();bridgePage.scrollTo(5300);
+for(let i=0;i<100;i++)bridgePage.frame();
+assert.equal(bridgePage.pending(),0,"Ending rests when its geometry and exposure settle");
+assert.equal(bridgePage.director().inspect().visual,1);
+bridgePage.scrollTo(4800);bridgePage.frame();bridgePage.hidden(true);
+const hiddenBridge=bridgePage.director().inspect();bridgePage.frame(2000);
+assert.equal(bridgePage.director().inspect().phase,hiddenBridge.phase);
+bridgePage.hidden(false);bridgePage.frame(2000);
+assert.ok(bridgePage.director().inspect().phase-hiddenBridge.phase<=.051);
+bridgePage.reduced(true);bridgePage.frame();assert.equal(bridgePage.pending(),0);
+assert.equal(bridgePage.director().inspect().visual,bridgePage.director().inspect().target);
+bridgePage.scrollTo(6500);bridgePage.frame();assert.equal(bridgePage.pending(),0,"Offscreen ending has no work");
+bridgePage.window.innerWidth=390;bridgePage.window.emit("resize");bridgePage.scrollTo(4800);bridgePage.frame();
+assert.ok(bridgePage.director().inspect().points<bridgeState.points,"Mobile bridge uses fewer persistent points");
+assert.ok(bridgePage.director().inspect().projected.every(p=>p.every(Number.isFinite)));
+const noBridgeCanvas=environment({bridge:true,canvas:false});noBridgeCanvas.scrollTo(4800);noBridgeCanvas.frame();
+assert.equal(noBridgeCanvas.worlds[0].classList.contains("is-rendered"),false,"Failed Canvas preserves the SVG fallback");
+const bridgeRates=[30,60,120].map(fps=>{
+  const page=environment({bridge:true});page.scrollTo(4480);page.frame();page.scrollTo(4900);
+  for(let i=0;i<fps/2;i++)page.frame(1000/fps);
+  return page.director().inspect();
+});
+for(const state of bridgeRates){
+  assert.ok(Math.abs(state.visual-bridgeRates[0].visual)<1e-9);
+  assert.ok(Math.abs(state.light-bridgeRates[0].light)<1e-9);
+}
+// Scenic layers coexist after MapCloud is readable; no common early switch.
+const layersWindow={};vm.runInNewContext(fs.readFileSync(path.join(__dirname,"../js/journey.js"),"utf8"),{window:layersWindow});
+const layers=layersWindow.PortfolioJourney.openingLayers(1,1,0);
+assert.equal(layers.plane,1);
+assert.ok(layers.branches>layers.mid&&layers.mid>layers.far&&layers.sun>0&&layers.mist>0);
+assert.ok(layersWindow.PortfolioJourney.openingLayers(1.4,1.4,0).near>0,"Foreground survives into post-roll");
+assert.equal(layersWindow.PortfolioJourney.openingLayers(1.8,1.8,0).plane,0);
+console.log("Final polish checks passed: staggered landscape, bridge preroll/shared lines/reverse, lazy buffers, 30/60/120 Hz, pause/static scroll, quiet ending, hidden/resume, reduced, mobile and fallback.");
