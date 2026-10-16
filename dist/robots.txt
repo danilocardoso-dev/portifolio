@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danilo-v-cardoso-engineering.super-boot-1545.chatgpt.site/sitemap.xml

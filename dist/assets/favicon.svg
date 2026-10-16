@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#111311"/>
+  <path d="M13 13h38v38H13z" fill="none" stroke="#f1efe8" stroke-width="2"/>
+  <path d="M13 13h18" stroke="#d4593f" stroke-width="4"/>
+  <text x="32" y="39" fill="#f1efe8" font-family="Georgia,serif" font-size="17" font-weight="700" text-anchor="middle">DVC</text>
+</svg>
