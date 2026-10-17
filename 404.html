@@ -1,31 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, follow" />
-  <meta name="description" content="Página não encontrada no portfólio de Danilo V. Cardoso. Volte ao início para explorar os projetos." data-meta-pt="Página não encontrada no portfólio de Danilo V. Cardoso. Volte ao início para explorar os projetos." data-meta-en="Page not found in Danilo V. Cardoso's portfolio. Return home to explore the projects." />
-  <meta name="theme-color" content="#090908" />
-  <title data-title-pt="Página não encontrada — Danilo V. Cardoso" data-title-en="Page not found — Danilo V. Cardoso">Página não encontrada — Danilo V. Cardoso</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#111311" />
+  <title>Página não encontrada — Danilo V. Cardoso</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/404.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
-<body class="page-not-found">
-  <a class="skip-link" href="#main-content" data-pt="Pular para o conteúdo" data-en="Skip to content">Pular para o conteúdo</a>
-  <header class="site-header">
-    <nav class="shell nav-shell" aria-label="Navegação principal" data-aria-pt="Navegação principal" data-aria-en="Main navigation">
-      <a href="/" class="brand" aria-label="Danilo V. Cardoso — início" data-aria-pt="Danilo V. Cardoso — início" data-aria-en="Danilo V. Cardoso — home"><span class="brand-mark" aria-hidden="true">DVC</span><span class="brand-caption">ENGINEERING WITH INTENT</span></a>
-      <button id="langToggle" class="lang-toggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
-    </nav>
-  </header>
-  <main class="shell error-content" id="main-content" tabindex="-1">
-    <p class="error-code" aria-hidden="true">404</p>
-    <h1 data-pt="Este caminho não existe." data-en="This path does not exist.">Este caminho não existe.</h1>
-    <p data-pt="A página pode ter mudado de endereço. Os projetos continuam no início." data-en="The page may have moved. You can still find the projects on the home page.">A página pode ter mudado de endereço. Os projetos continuam no início.</p>
-    <a class="text-cta text-cta-primary" href="/"><span data-pt="Voltar ao início" data-en="Return home">Voltar ao início</span><span aria-hidden="true">↗</span></a>
+<body>
+  <a class="skip-link" href="#not-found" data-pt="Pular para o conteúdo" data-en="Skip to content">Pular para o conteúdo</a>
+  <main id="not-found" class="case-header" style="min-height:100vh" aria-labelledby="not-found-title">
+    <div class="case-hero">
+      <p class="eyebrow">ERROR / 404</p>
+      <h1 id="not-found-title" style="font-size:clamp(72px,10vw,144px)" data-pt="Fora do mapa." data-en="Off the map.">Fora do mapa.</h1>
+      <p class="case-subtitle" data-pt="Este caminho não existe ou mudou de endereço." data-en="This path does not exist or has moved.">Este caminho não existe ou mudou de endereço.</p>
+      <p style="margin-top:42px"><a class="button button-primary" href="/"><span data-pt="Voltar ao portfólio" data-en="Back to the portfolio">Voltar ao portfólio</span><b aria-hidden="true">→</b></a></p>
+    </div>
+    <div class="case-mark" aria-hidden="true">404</div>
   </main>
-  <footer class="site-footer"><div class="shell footer-inner"><p>Danilo V. Cardoso</p><p data-pt="Engenharia, intenção e detalhe." data-en="Engineering, intent and detail.">Engenharia, intenção e detalhe.</p></div></footer>
-  <script src="/js/404.js"></script>
+  <script src="/script.js" defer></script>
 </body>
 </html>

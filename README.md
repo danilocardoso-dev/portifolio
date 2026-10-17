@@ -97,8 +97,10 @@ Para repetir: execute o servidor e os dois verificadores; percorra home → MapC
 
 ## Publicação
 
-O projeto não possui etapa de build. `index.html` deve continuar acessível na raiz publicada pelo fluxo GitHub → Coolify → Docker/nginx → VPS.
+O projeto não possui etapa de build. A raiz é a fonte oficial e `index.html` deve continuar acessível diretamente no fluxo GitHub → Coolify → Docker/nginx → VPS.
 
 Sirva HTML, CSS, JS, SVG, PNG, XML e TXT com os MIME types usuais. Não existe roteador client-side, API ou build. O script `serve.js` é somente para desenvolvimento local; a publicação continua pelo nginx existente.
+
+A pasta `dist/` é um espelho compatível com o OpenAI Sites e não deve ser editada diretamente. Depois de alterar a raiz, execute `node scripts/sync-sites-dist.js` para atualizar o espelho. Valide as duas saídas com `node scripts/verify-static.js` e `node scripts/verify-sites.js` antes do commit.
 
 Consulte [SEO_SETUP.md](SEO_SETUP.md) antes de publicar: configurar a 404 com status HTTP correto, redirects canônicos, MIME, arquivos públicos e Search Console. A presença dos arquivos no checkout não altera automaticamente o proxy/nginx nem registra o domínio no Google.

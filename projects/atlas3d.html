@@ -1,147 +1,72 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" data-meta-pt="Case Atlas3D — núcleo 3D extensível em C# e .NET para visualização técnica e científica." data-meta-en="Atlas3D case study — an extensible C# and .NET 3D core for technical and scientific visualization." content="Case Atlas3D — núcleo 3D extensível em C# e .NET para visualização técnica e científica." />
-  <meta name="theme-color" content="#090908" />
-  <meta property="og:title" data-meta-pt="Atlas3D — Visualização 3D em C# e .NET | Danilo V. Cardoso" data-meta-en="Atlas3D — C# and .NET 3D visualization | Danilo V. Cardoso" content="Atlas3D — Visualização 3D em C# e .NET | Danilo V. Cardoso" />
-  <meta property="og:description" data-meta-pt="Computação gráfica, arquitetura modular e interação 3D sobre OpenGL." data-meta-en="Computer graphics, modular architecture and 3D interaction built on OpenGL." content="Computação gráfica, arquitetura modular e interação 3D sobre OpenGL." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://danilovcardoso.com.br/projects/atlas3d.html" />
-  <meta property="og:image" content="https://danilovcardoso.com.br/assets/social-card.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" data-meta-pt="Danilo V. Cardoso — Software Engineer e Full Stack Developer, sobre uma paisagem escura com sol vermelho." data-meta-en="Danilo V. Cardoso — Software Engineer and Full Stack Developer, over a dark landscape with a red sun." content="Danilo V. Cardoso — Software Engineer e Full Stack Developer, sobre uma paisagem escura com sol vermelho." />
-  <meta property="og:locale" data-meta-pt="pt_BR" data-meta-en="en_US" content="pt_BR" />
-  <meta property="og:site_name" content="Danilo V. Cardoso" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" data-meta-pt="Atlas3D — Visualização 3D em C# e .NET | Danilo V. Cardoso" data-meta-en="Atlas3D — C# and .NET 3D visualization | Danilo V. Cardoso" content="Atlas3D — Visualização 3D em C# e .NET | Danilo V. Cardoso" />
-  <meta name="twitter:description" data-meta-pt="Computação gráfica, arquitetura modular e interação 3D sobre OpenGL." data-meta-en="Computer graphics, modular architecture and 3D interaction built on OpenGL." content="Computação gráfica, arquitetura modular e interação 3D sobre OpenGL." />
-  <meta name="twitter:image" content="https://danilovcardoso.com.br/assets/social-card.png" />
-  <meta name="twitter:image:alt" data-meta-pt="Danilo V. Cardoso — Software Engineer e Full Stack Developer, sobre uma paisagem escura com sol vermelho." data-meta-en="Danilo V. Cardoso — Software Engineer and Full Stack Developer, over a dark landscape with a red sun." content="Danilo V. Cardoso — Software Engineer e Full Stack Developer, sobre uma paisagem escura com sol vermelho." />
-  <title data-title-pt="Atlas3D — Visualização 3D em C# e .NET | Danilo V. Cardoso" data-title-en="Atlas3D — C# and .NET 3D visualization | Danilo V. Cardoso">Atlas3D — Visualização 3D em C# e .NET | Danilo V. Cardoso</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atlas3D — Case de engenharia | Danilo V. Cardoso</title>
+  <meta name="description" content="Arquitetura de um núcleo 3D extensível em C#, .NET, Avalonia UI, OpenTK e OpenGL para visualização técnica e científica." />
+  <meta name="theme-color" content="#111311" />
   <link rel="canonical" href="https://danilovcardoso.com.br/projects/atlas3d.html" />
+  <meta property="og:url" content="https://danilovcardoso.com.br/projects/atlas3d.html" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../css/styles.css" />
-  <link rel="stylesheet" href="../css/cases.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://danilovcardoso.com.br/projects/atlas3d.html#webpage",
-    "url": "https://danilovcardoso.com.br/projects/atlas3d.html",
-    "name": "Atlas3D — Visualização 3D em C# e .NET | Danilo V. Cardoso",
-    "description": "Case Atlas3D — núcleo 3D extensível em C# e .NET para visualização técnica e científica.",
-    "inLanguage": "pt-BR",
-    "isPartOf": {
-      "@id": "https://danilovcardoso.com.br/#website"
-    },
-    "author": {
-      "@id": "https://danilovcardoso.com.br/#person"
-    }
-  }
-  </script>
+  <link rel="stylesheet" href="../styles.css" />
 </head>
-<body class="case-page case-atlas3d">
+<body class="case-page">
   <a class="skip-link" href="#case-content" data-pt="Pular para o conteúdo" data-en="Skip to content">Pular para o conteúdo</a>
   <header class="site-header" data-header>
-    <nav class="shell nav-shell case-nav" aria-label="Navegação principal" data-aria-pt="Navegação principal" data-aria-en="Main navigation">
-      <a href="../" class="brand" aria-label="Danilo V. Cardoso — início" data-aria-pt="Danilo V. Cardoso — início" data-aria-en="Danilo V. Cardoso — home"><span class="brand-mark" aria-hidden="true">DVC</span><span class="brand-caption">ENGINEERING WITH INTENT</span></a>
-      <a class="back-link" href="../#projects"><span aria-hidden="true">←</span><span data-pt="Voltar aos projetos" data-en="Back to projects">Voltar aos projetos</span></a>
-      <button id="langToggle" class="lang-toggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
-    </nav>
+    <a class="brand" href="../" aria-label="Danilo V. Cardoso — início" data-aria-pt="Danilo V. Cardoso — início" data-aria-en="Danilo V. Cardoso — home"><span class="brand-mark" aria-hidden="true">DVC</span><span class="brand-copy">Danilo V. Cardoso<small>Software Engineer</small></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span class="sr-only" data-pt="Abrir menu" data-en="Open menu">Abrir menu</span><i></i><i></i></button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Navegação principal" data-aria-pt="Navegação principal" data-aria-en="Primary navigation" data-nav><a href="../#cases" data-pt="Projetos" data-en="Work">Projetos</a><a href="../#services" data-pt="Atuação" data-en="Expertise">Atuação</a><a href="../#about" data-pt="Sobre" data-en="About">Sobre</a><a href="../#contact" data-pt="Contato" data-en="Contact">Contato</a></nav>
+    <button class="language-toggle" type="button" data-language aria-label="Mudar idioma para inglês"><span data-language-label>EN</span></button>
   </header>
 
-  <main id="case-content" tabindex="-1">
-    <section class="case-hero" aria-labelledby="case-title">
-      <div class="case-world" data-world="atlas3d" aria-hidden="true">
-        <img class="world-poster" src="../assets/scenes/atlas3d.svg" alt="" fetchpriority="high" />
-        <canvas class="world-canvas"></canvas>
+  <main id="case-content">
+    <section class="case-header" style="--case-glow: rgba(137, 147, 163, .25)" aria-labelledby="case-title">
+      <div class="case-hero">
+        <a class="case-back" href="../#cases"><span aria-hidden="true">←</span><span data-pt="Voltar aos projetos" data-en="Back to work">Voltar aos projetos</span></a>
+        <p class="eyebrow" data-pt="CASE 02 · COMPUTAÇÃO GRÁFICA" data-en="CASE 02 · COMPUTER GRAPHICS">CASE 02 · COMPUTAÇÃO GRÁFICA</p>
+        <h1 id="case-title">Atlas3D</h1>
+        <p class="case-subtitle" data-pt="Um núcleo gráfico extensível para explorar forma, espaço e modelos técnicos sem acoplar domínio, interface e renderização." data-en="An extensible graphics core for exploring form, space and technical models without coupling domain, interface and rendering.">Um núcleo gráfico extensível para explorar forma, espaço e modelos técnicos sem acoplar domínio, interface e renderização.</p>
+        <dl class="case-facts"><div><dt data-pt="FOCO" data-en="FOCUS">FOCO</dt><dd data-pt="Renderização · Interação · 3D" data-en="Rendering · Interaction · 3D">Renderização · Interação · 3D</dd></div><div><dt data-pt="STATUS" data-en="STATUS">STATUS</dt><dd data-pt="Fase final de desenvolvimento" data-en="Final development stage">Fase final de desenvolvimento</dd></div></dl>
       </div>
-      <p class="case-coordinate" aria-hidden="true">02 / SPATIAL STUDIES<br />X · Y · Z</p>
-      <div class="shell case-hero-layout">
-        <div class="case-hero-copy">
-          <p class="case-eyebrow" data-pt="CASE 02 · COMPUTAÇÃO GRÁFICA" data-en="CASE 02 · COMPUTER GRAPHICS">CASE 02 · COMPUTAÇÃO GRÁFICA</p>
-          <h1 class="case-title" id="case-title">Atlas3D</h1>
-          <p class="case-subtitle" data-pt="Explore. Interact. Understand. Um núcleo desktop para exploração interativa de modelos tridimensionais." data-en="Explore. Interact. Understand. A desktop core for interactive exploration of three-dimensional models.">Explore. Interact. Understand. Um núcleo desktop para exploração interativa de modelos tridimensionais.</p>
-          <a class="case-read-link" href="#vision"><span data-pt="Explorar o case" data-en="Explore the case">Explorar o case</span><span aria-hidden="true">↓</span></a>
-        </div>
-        <dl class="case-facts">
-          <div><dt data-pt="FOCO" data-en="FOCUS">FOCO</dt><dd data-pt="Renderização · Interação · 3D" data-en="Rendering · Interaction · 3D">Renderização · Interação · 3D</dd></div>
-          <div><dt data-pt="STATUS" data-en="STATUS">STATUS</dt><dd data-pt="Fase final de desenvolvimento" data-en="Final development stage">Fase final de desenvolvimento</dd></div>
-          <div><dt>STACK</dt><dd>C# · .NET · OpenGL</dd></div>
-        </dl>
-      </div>
+      <div class="case-mark" aria-hidden="true">02</div>
     </section>
 
-    <section class="section case-body">
-      <div class="shell case-body-inner">
-        <nav class="case-toc" aria-label="Índice do case" data-aria-pt="Índice do case" data-aria-en="Case study index">
-          <p class="case-toc-title"><span class="case-toc-number" aria-hidden="true">02</span><span data-pt="NESTE CASE" data-en="IN THIS CASE">NESTE CASE</span></p>
-          <ol>
-            <li><a href="#vision" data-pt="01 · Visão" data-en="01 · Vision">01 · Visão</a></li>
-            <li><a href="#stack-detail" data-pt="02 · Stack" data-en="02 · Stack">02 · Stack</a></li>
-            <li><a href="#architecture" data-pt="03 · Arquitetura" data-en="03 · Architecture">03 · Arquitetura</a></li>
-            <li><a href="#graphics" data-pt="04 · Engenharia 3D" data-en="04 · 3D engineering">04 · Engenharia 3D</a></li>
-            <li><a href="#status" data-pt="05 · Status" data-en="05 · Status">05 · Status</a></li>
-          </ol>
-        </nav>
+    <div class="case-content">
+      <section class="case-intro reveal">
+        <div><p class="section-index">OVERVIEW</p><h2 data-pt="Controle e arquitetura." data-en="Control and architecture.">Controle e arquitetura.</h2></div>
+        <p data-pt="O Atlas3D nasceu como um núcleo independente de domínio para visualização técnica e científica. A solução combina controle sobre a camada gráfica com separação clara entre interface, regras, renderização e formatos." data-en="Atlas3D began as a domain-independent core for technical and scientific visualization. The solution combines control over the graphics layer with clear separation between interface, rules, rendering and formats.">O Atlas3D nasceu como um núcleo independente de domínio para visualização técnica e científica. A solução combina controle sobre a camada gráfica com separação clara entre interface, regras, renderização e formatos.</p>
+      </section>
 
-        <div class="case-story">
-          <article class="case-story-section reveal" id="vision">
-            <p class="kicker">01</p>
-            <h2 data-pt="Visão" data-en="Vision">Visão</h2>
-            <p data-pt="O Atlas3D foi criado como um núcleo 3D extensível para visualização científica e técnica, sem ficar preso a um único domínio de conhecimento. O objetivo é oferecer uma base coerente para explorar forma, espaço e dados tridimensionais." data-en="Atlas3D was created as an extensible 3D core for scientific and technical visualization, without being tied to a single field of knowledge. Its goal is to provide a coherent foundation for exploring form, space and three-dimensional data.">O Atlas3D foi criado como um núcleo 3D extensível para visualização científica e técnica, sem ficar preso a um único domínio de conhecimento. O objetivo é oferecer uma base coerente para explorar forma, espaço e dados tridimensionais.</p>
-            <blockquote class="case-pullquote" lang="en">Explore. Interact. Understand.</blockquote>
-          </article>
+      <section class="case-story reveal">
+        <p class="case-story-index">01 / VISION</p>
+        <div class="case-story-body"><h2 data-pt="Explore. Interaja. Entenda." data-en="Explore. Interact. Understand.">Explore. Interaja. Entenda.</h2><p data-pt="O projeto não está preso a um único campo de conhecimento. Sua fundação foi pensada para visualizar modelos técnicos e científicos, criando uma base coerente para trabalhar com forma, espaço e dados tridimensionais." data-en="The project is not tied to a single field of knowledge. Its foundation was designed to visualize technical and scientific models, creating a coherent base for working with form, space and three-dimensional data.">O projeto não está preso a um único campo de conhecimento. Sua fundação foi pensada para visualizar modelos técnicos e científicos, criando uma base coerente para trabalhar com forma, espaço e dados tridimensionais.</p><blockquote class="case-quote" lang="en">Explore. Interact. Understand.</blockquote></div>
+      </section>
 
-          <article class="case-story-section reveal" id="stack-detail">
-            <p class="kicker">02</p>
-            <h2 data-pt="Stack" data-en="Stack">Stack</h2>
-            <p data-pt="A aplicação é construída em C# e .NET, utilizando Avalonia UI para uma interface desktop multiplataforma e OpenTK/OpenGL na camada gráfica. A escolha mantém interface e renderização separadas sem abandonar controle de baixo nível." data-en="The application is built with C# and .NET, using Avalonia UI for a cross-platform desktop interface and OpenTK/OpenGL for its graphics layer. This choice keeps interface and rendering separate without giving up low-level control.">A aplicação é construída em C# e .NET, utilizando Avalonia UI para uma interface desktop multiplataforma e OpenTK/OpenGL na camada gráfica. A escolha mantém interface e renderização separadas sem abandonar controle de baixo nível.</p>
-          </article>
+      <section class="case-story reveal">
+        <p class="case-story-index">02 / STACK</p>
+          <div class="case-story-body"><h2 data-pt="Desktop e gráficos nativos" data-en="Desktop and native graphics">Desktop e gráficos nativos</h2><p data-pt="A aplicação utiliza C# e .NET, Avalonia UI para a interface desktop multiplataforma e OpenTK/OpenGL para a camada gráfica. A combinação mantém a experiência de produto separada da renderização sem abrir mão de controle de baixo nível." data-en="The application uses C# and .NET, Avalonia UI for the cross-platform desktop interface and OpenTK/OpenGL for the graphics layer. The combination keeps product experience separate from rendering without giving up low-level control.">A aplicação utiliza C# e .NET, Avalonia UI para a interface desktop multiplataforma e OpenTK/OpenGL para a camada gráfica. A combinação mantém a experiência de produto separada da renderização sem abrir mão de controle de baixo nível.</p><ul class="case-stack" aria-label="Tecnologias" data-aria-pt="Tecnologias" data-aria-en="Technologies"><li>C#</li><li>.NET</li><li>Avalonia UI</li><li>OpenTK</li><li>OpenGL</li></ul></div>
+      </section>
 
-          <article class="case-story-section reveal" id="architecture">
-            <p class="kicker">03</p>
-            <h2 data-pt="Arquitetura" data-en="Architecture">Arquitetura</h2>
-            <p data-pt="A solução distribui responsabilidades entre Atlas3D.App, Atlas3D.Core, Atlas3D.Rendering e Atlas3D.Formats. Essa separação protege o núcleo das decisões de interface e permite que formatos e estratégias de renderização evoluam com menor acoplamento." data-en="The solution distributes responsibilities across Atlas3D.App, Atlas3D.Core, Atlas3D.Rendering and Atlas3D.Formats. This separation protects the core from interface decisions and allows formats and rendering strategies to evolve with less coupling.">A solução distribui responsabilidades entre <strong>Atlas3D.App</strong>, <strong>Atlas3D.Core</strong>, <strong>Atlas3D.Rendering</strong> e <strong>Atlas3D.Formats</strong>. Essa separação protege o núcleo das decisões de interface e permite que formatos e estratégias de renderização evoluam com menor acoplamento.</p>
-            <figure class="architecture-figure geometry-figure">
-              <figcaption><span class="diagram-index" aria-hidden="true">FIG. 02</span><span data-pt="Quatro responsabilidades. Uma fundação extensível." data-en="Four responsibilities. One extensible foundation.">Quatro responsabilidades. Uma fundação extensível.</span></figcaption>
-              <dl class="module-map">
-                <div class="module-core"><dt>Atlas3D.Core</dt><dd data-pt="Núcleo independente da interface" data-en="A core independent of the interface">Núcleo independente da interface</dd></div>
-                <div><dt>Atlas3D.App</dt><dd data-pt="Interface desktop · Avalonia UI" data-en="Desktop interface · Avalonia UI">Interface desktop · Avalonia UI</dd></div>
-                <div><dt>Atlas3D.Rendering</dt><dd data-pt="Renderização · OpenTK / OpenGL" data-en="Rendering · OpenTK / OpenGL">Renderização · OpenTK / OpenGL</dd></div>
-                <div><dt>Atlas3D.Formats</dt><dd data-pt="Evolução dos formatos 3D" data-en="Evolution of 3D formats">Evolução dos formatos 3D</dd></div>
-              </dl>
-            </figure>
-          </article>
+      <section class="case-story reveal">
+        <p class="case-story-index">03 / ARCHITECTURE</p>
+        <div class="case-story-body"><h2 data-pt="Responsabilidades bem delimitadas" data-en="Clear responsibilities">Responsabilidades bem delimitadas</h2><p data-pt="A solução distribui responsabilidades entre aplicação, núcleo, renderização e formatos. A separação protege o domínio das decisões de interface e permite evoluir formatos e estratégias gráficas com menor acoplamento." data-en="The solution distributes responsibilities across application, core, rendering and formats. This separation protects the domain from interface decisions and allows formats and graphics strategies to evolve with less coupling.">A solução distribui responsabilidades entre aplicação, núcleo, renderização e formatos. A separação protege o domínio das decisões de interface e permite evoluir formatos e estratégias gráficas com menor acoplamento.</p><ol class="architecture-flow"><li><strong>Atlas3D.App</strong><span data-pt="Interface desktop" data-en="Desktop interface">Interface desktop</span></li><li><strong>Atlas3D.Core</strong><span data-pt="Núcleo independente" data-en="Independent core">Núcleo independente</span></li><li><strong>Rendering</strong><span data-pt="OpenTK / OpenGL" data-en="OpenTK / OpenGL">OpenTK / OpenGL</span></li><li><strong>Formats</strong><span data-pt="Modelos e evolução" data-en="Models and evolution">Modelos e evolução</span></li></ol></div>
+      </section>
 
-          <article class="case-story-section reveal" id="graphics">
-            <p class="kicker">04</p>
-            <h2 data-pt="Engenharia 3D" data-en="3D engineering">Engenharia 3D</h2>
-            <div class="case-detail-world geometry-detail" data-world="atlas3d" aria-hidden="true"><img class="world-poster" src="../assets/scenes/atlas3d.svg" alt="" loading="lazy" /><canvas class="world-canvas"></canvas><span>X / Y / Z — SPATIAL STUDY</span></div>
-            <p data-pt="O projeto trabalha com buffers, vértices, meshes, shaders, câmera, iluminação, transformações, projeção, seleção e ray casting. Cena e picking fazem parte da mesma fundação que prepara a evolução para o carregamento de diferentes formatos 3D." data-en="The project works with buffers, vertices, meshes, shaders, camera, lighting, transformations, projection, selection and ray casting. Scene and picking share the same foundation that prepares the system to load different 3D formats.">O projeto trabalha com buffers, vértices, meshes, shaders, câmera, iluminação, transformações, projeção, seleção e ray casting. Cena e picking fazem parte da mesma fundação que prepara a evolução para o carregamento de diferentes formatos 3D.</p>
-          </article>
+      <section class="case-story reveal">
+        <p class="case-story-index">04 / 3D ENGINEERING</p>
+        <div class="case-story-body"><h2 data-pt="Da cena ao ray casting" data-en="From scene to ray casting">Da cena ao ray casting</h2><p data-pt="O núcleo trabalha com buffers, vértices, meshes, shaders, câmera, iluminação, transformações, projeção, seleção e ray casting. Cena e picking compartilham a fundação que prepara o carregamento de diferentes formatos 3D." data-en="The core works with buffers, vertices, meshes, shaders, camera, lighting, transformations, projection, selection and ray casting. Scene and picking share the foundation that prepares the system to load different 3D formats.">O núcleo trabalha com buffers, vértices, meshes, shaders, câmera, iluminação, transformações, projeção, seleção e ray casting. Cena e picking compartilham a fundação que prepara o carregamento de diferentes formatos 3D.</p></div>
+      </section>
 
-          <article class="case-story-section reveal" id="status">
-            <p class="kicker">05</p>
-            <h2 data-pt="Evolução incremental" data-en="Incremental evolution">Evolução incremental</h2>
-            <p data-pt="O projeto está em fase final de desenvolvimento. Seu roadmap documenta uma evolução incremental: da fundação de renderização à interação, carregamento de modelos e base para visualização científica." data-en="The project is in its final development stage. Its roadmap documents an incremental evolution: from the rendering foundation to interaction, model loading and a base for scientific visualization.">O projeto está em fase final de desenvolvimento. Seu roadmap documenta uma evolução incremental: da fundação de renderização à interação, carregamento de modelos e base para visualização científica.</p>
-            <ul class="case-stack" aria-label="Tecnologias" data-aria-pt="Tecnologias" data-aria-en="Technologies"><li>C#</li><li>.NET</li><li>Avalonia UI</li><li>OpenTK</li><li>OpenGL</li><li>3D</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
+      <section class="case-story reveal">
+        <p class="case-story-index">05 / ROADMAP</p>
+        <div class="case-story-body"><h2 data-pt="Evolução incremental" data-en="Incremental evolution">Evolução incremental</h2><p data-pt="Em fase final de desenvolvimento, o roadmap registra uma progressão da fundação de renderização para interação, carregamento de modelos e suporte à visualização científica." data-en="In its final development stage, the roadmap records a progression from the rendering foundation to interaction, model loading and support for scientific visualization.">Em fase final de desenvolvimento, o roadmap registra uma progressão da fundação de renderização para interação, carregamento de modelos e suporte à visualização científica.</p></div>
+      </section>
+    </div>
 
-    <section class="case-next case-next-azriel">
-      <img class="case-next-world" src="../assets/scenes/azriel.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-      <a class="shell case-next-link" href="azriel.html"><span class="case-next-caption" data-pt="03 / PRÓXIMO MUNDO" data-en="03 / NEXT WORLD">03 / PRÓXIMO MUNDO</span><strong>Azriel <span aria-hidden="true">↗</span></strong><span class="case-next-description" data-pt="Conhecimento em movimento." data-en="Knowledge in motion.">Conhecimento em movimento.</span></a>
-    </section>
+    <a class="next-case" href="azriel.html"><div class="next-case-inner"><small data-pt="PRÓXIMO CASE · SISTEMAS E IA" data-en="NEXT CASE · SYSTEMS AND AI">PRÓXIMO CASE · SISTEMAS E IA</small><strong>Azriel <span aria-hidden="true">↗</span></strong></div></a>
   </main>
-
-  <footer class="site-footer"><div class="shell footer-inner"><p>© <span id="year">2026</span> Danilo V. Cardoso</p><p data-pt="Engenharia, intenção e detalhe." data-en="Engineering, intent and detail.">Engenharia, intenção e detalhe.</p><a href="#case-content"><span data-pt="Voltar ao topo" data-en="Back to top">Voltar ao topo</span> ↑</a></div></footer>
-  <script src="../js/main.js"></script>
+  <footer class="site-footer"><p>© <span data-year>2026</span> Danilo V. Cardoso</p><p data-pt="Engenharia da arquitetura à operação." data-en="Engineering from architecture to operation.">Engenharia da arquitetura à operação.</p><a href="#case-content"><span data-pt="Voltar ao topo" data-en="Back to top">Voltar ao topo</span> ↑</a></footer>
+  <script src="../script.js" defer></script>
 </body>
 </html>
